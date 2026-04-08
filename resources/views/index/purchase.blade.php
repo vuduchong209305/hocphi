@@ -49,7 +49,7 @@
 		                if (!res.data || res.data.length === 0) {
 		                    $('#orderResult').html(`
 		                        <div class="text-center text-gray-500 py-6">
-		                            Không tìm thấy đơn hàng nào
+		                            Không tìm thấy khóa học nào
 		                        </div>
 		                    `);
 		                    return;
