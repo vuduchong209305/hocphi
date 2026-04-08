@@ -1,0 +1,112 @@
+.preview {
+    max-width: 150px;
+}
+
+.select2 {
+    width: 100% !important;
+}
+
+.hide-line-clamp {
+    overflow: hidden;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    word-break: break-all;
+}
+
+.lang_flag {
+    width: 30px;
+}
+
+.ms-container .ms-list {
+    height: 500px;
+}
+
+.ms-container {
+    width: auto !important;
+}
+
+.ms-container .form-control {
+    margin-bottom: 5px;
+}
+
+.drag-handle {
+    cursor: move;
+}
+
+.form-label {
+    font-weight: 600;
+}
+
+/* ====== SELECT2 BASE ====== */
+.select2-container {
+    width: 100% !important;
+}
+
+/* ====== SELECTION ====== */
+.select2-container--default .select2-selection--single {
+    height: 38px !important; /* Bootstrap 4/5 */
+    padding: 0 0.75rem !important;
+    border: 1px solid #ced4da !important;
+    border-radius: 0.375rem !important;
+    background-color: #fff !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+/* ====== CONTENT ====== */
+.select2-container--default .select2-selection__rendered {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding: 0 !important;
+    line-height: 1.5 !important;
+}
+
+/* ====== DROPDOWN ARROW ====== */
+.select2-container--default .select2-selection__arrow {
+    height: 100% !important;
+    right: 6px !important;
+}
+
+/* ====== IMAGE ====== */
+.select2-container img {
+    width: 32px !important;
+    height: 32px !important;
+    object-fit: contain !important;
+    border-radius: 4px !important;
+}
+
+/* ====== REMOVE ODD BEHAVIOR ====== */
+.select2-container--default .select2-selection__rendered {
+    white-space: nowrap;
+}
+
+.step {
+    position: relative;
+    cursor: pointer;
+}
+
+.circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #dee2e6;
+    line-height: 40px;
+    color: #000;
+    font-weight: bold;
+}
+
+.step.active .circle {
+    background: #0d6efd;
+    color: #fff;
+}
+
+.step.completed .circle {
+    background: #198754;
+    color: #fff;
+}
+
+.label {
+    font-size: 13px;
+}

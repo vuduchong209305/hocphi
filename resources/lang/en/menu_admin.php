@@ -1,0 +1,41 @@
+<?php 
+
+return [
+	'dashboard'        => 'Dashboard',
+	'home'             => 'Home Page',
+	'list'             => 'List',
+	'add'              => 'Add New',
+	'account'          => 'Account',
+	'customer'         => 'Customer',
+	'category'    	   => 'Category',
+	'category_news'    => 'Category News',
+	'news'             => 'News',
+	'category_product' => 'Category Product',
+	'product'          => 'Product',
+	'slide'            => 'Slide',
+	'config'           => 'Config',
+	'role'			   => 'Role',
+	'media'			   => 'Media',
+	'menu'			   => 'Menu',
+	'attribute'		   => 'Attribute',
+	'web_info'		   => 'Web Info',
+	'branch'		   => 'Branch',
+	'tag'		   	   => 'Tag',
+	'comment'		   => 'Comment',
+	'banner'		   => 'Banner',
+	'position'		   => 'Banner Position',
+	'coupon'		   => 'Coupon',
+	'order'		   	   => 'Order',
+	'bought'		   => 'Bought',
+	'option'	   	   => 'Option',
+	'brand'	   	   	   => 'Brand',
+	'frame'	   	   	   => 'Frame',
+
+	'exhibition'	   => 'Exhibition',
+	'template_mail'	   => 'Template Mail',
+	'question'         => 'Question',
+	'booking'          => 'Booking',
+
+	'agency'		   => 'Agency',
+	'device'		   => 'Device'
+];

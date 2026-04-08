@@ -1,0 +1,53 @@
+@font-face {
+    font-family: primary-font;
+    src: url('./../fonts/Poppins-Light.ttf');
+}
+
+@font-face {
+    font-family: primary-font-bold;
+    src: url('./../fonts/Poppins-Bold.ttf');
+}
+
+.swiper-navigation-icon {
+    width: 7px !important;
+}
+
+.move-smooth {
+    animation: particlemove 4.5s infinite linear;
+}
+
+.content p {
+    margin-bottom: 10px;
+}
+
+@keyframes particlemove {
+    0% {
+        transform: translate(0, 0);
+        -webkit-transform: translate(0, 0)
+    }
+    25% {
+        transform: translate(10px, 10px);
+        -webkit-transform: translate(10px, 10px)
+    }
+    50% {
+        transform: translate(5px, 5px);
+        -webkit-transform: translate(5px, 5px)
+    }
+    75% {
+        transform: translate(10px, -5px);
+        -webkit-transform: translate(10px, -5px)
+    }
+    100% {
+        transform: translate(0, 0);
+        -webkit-transform: translate(0, 0)
+    }
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}

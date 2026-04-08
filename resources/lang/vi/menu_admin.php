@@ -1,0 +1,41 @@
+<?php 
+
+return [
+	'dashboard'        => 'Dashboard',
+	'home'             => 'Trang Chủ',
+	'list'             => 'Danh Sách',
+	'add'              => 'Thêm Mới',
+	'account'          => 'Tài Khoản',
+	'customer'         => 'Khách Hàng',
+	'category'    	   => 'Danh Mục',
+	'category_news'    => 'Danh Mục Tin Tức',
+	'news'             => 'Tin Tức',
+	'category_product' => 'Danh Mục Sản Phẩm',
+	'product'          => 'Sản Phẩm',
+	'slide'            => 'Slide Ảnh',
+	'config'           => 'Cấu Hình Chung',
+	'role'             => 'Phân Quyền',
+	'media'            => 'Thư Viện',
+	'menu'             => 'Menu',
+	'attribute'        => 'Thuộc Tính',
+	'web_info'         => 'Thông Tin Website',
+	'branch'           => 'Chi Nhánh',
+	'tag'              => 'Thẻ',
+	'comment'          => 'Bình Luận',
+	'banner'           => 'Banner',
+	'position'         => 'Vị Trí Banner',
+	'coupon'           => 'Mã Giảm Giá',
+	'order'            => 'Đơn Hàng',
+	'bought'           => 'Đã Mua',
+	'option'           => 'Tùy Chọn',
+	'brand'            => 'Thương Hiệu',
+	'frame'            => 'Khung Ảnh',
+
+	'exhibition'       => 'Triển lãm',
+	'template_mail'    => 'Mẫu giao diện Mail',
+	'question'         => 'Câu hỏi',
+	'booking'          => 'Booking',
+
+	'agency'		   => 'Đại lý',
+	'device'		   => 'Thiết bị'
+];
