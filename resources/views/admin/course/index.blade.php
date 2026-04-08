@@ -83,8 +83,8 @@
                                 <input type="checkbox" class="form-check-input checkall">
                             </th>
                             <th width="5%">STT</th>
-                            <th width="60%">Tên</th>
-                            <th width="10%">Giá</th>
+                            <th width="55%">Tên</th>
+                            <th width="15%">Giá</th>
                             <th width="10%">Trạng thái</th>
                             <th width="10%">#</th>
                         </tr>

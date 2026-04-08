@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 08, 2026 lúc 04:47 AM
+-- Thời gian đã tạo: Th4 08, 2026 lúc 05:45 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -151,6 +151,7 @@ CREATE TABLE `vdh_orders` (
   `cccd_back` varchar(255) DEFAULT NULL,
   `degree` varchar(255) DEFAULT NULL,
   `signature` varchar(255) DEFAULT NULL,
+  `price` decimal(15,0) DEFAULT NULL,
   `paid_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -160,8 +161,8 @@ CREATE TABLE `vdh_orders` (
 -- Đang đổ dữ liệu cho bảng `vdh_orders`
 --
 
-INSERT INTO `vdh_orders` (`id`, `code`, `fullname`, `email`, `phone`, `company`, `cccd`, `birthday`, `course_id`, `cccd_front`, `cccd_back`, `degree`, `signature`, `paid_at`, `created_at`, `updated_at`) VALUES
-(1, 'BPKFHSYOXL', 'Vũ Đức Hồng', 'vuduchong209305@gmail.com', '0986209305', 'Bệnh viện E', '022093001103', '06-06-1993', 2, 'images/2026/04/07/ElmpzSYD1OGhdqx59iK4.webp', 'images/2026/04/07/2JbDz4ibi2lIBHFHNSEi.webp', 'images/2026/04/07/dxMI3SiojOLuyEF1uY7N.webp', 'images/2026/04/07/TGySFfZOZ4cf8nTcbNha.webp', NULL, '2026-04-07 14:26:50', '2026-04-08 02:34:29');
+INSERT INTO `vdh_orders` (`id`, `code`, `fullname`, `email`, `phone`, `company`, `cccd`, `birthday`, `course_id`, `cccd_front`, `cccd_back`, `degree`, `signature`, `price`, `paid_at`, `created_at`, `updated_at`) VALUES
+(1, 'BPKFHSYOXL', 'Vũ Đức Hồng', 'vuduchong209305@gmail.com', '0986209305', 'Bệnh viện E', '022093001103', '06-06-1993', 2, 'images/2026/04/07/ElmpzSYD1OGhdqx59iK4.webp', 'images/2026/04/07/2JbDz4ibi2lIBHFHNSEi.webp', 'images/2026/04/07/dxMI3SiojOLuyEF1uY7N.webp', 'images/2026/04/07/TGySFfZOZ4cf8nTcbNha.webp', 500000, NULL, '2026-04-07 14:26:50', '2026-04-08 02:34:29');
 
 -- --------------------------------------------------------
 
@@ -215,7 +216,10 @@ INSERT INTO `vdh_setting` (`id`, `option_key`, `option_value`, `created_at`, `up
 (5, 'maintenance', NULL, '2026-02-08 03:22:48', '2026-04-08 01:37:38'),
 (6, 'seo', '1', '2026-02-08 03:22:48', '2026-02-08 03:26:22'),
 (7, 'robot_index', NULL, '2026-02-08 03:28:15', '2026-02-21 02:02:51'),
-(8, 'hero_typed', '{\"vi\":\"\\u0110\\u00e0o t\\u1ea1o CME y khoa\\r\\n\\u0110\\u00e0o t\\u1ea1o Online 100%\\r\\nH\\u1ecdc ph\\u00ed ph\\u00f9 h\\u1ee3p\",\"en\":null,\"cn\":null,\"kr\":null}', '2026-03-06 11:20:11', '2026-04-08 01:47:57');
+(8, 'hero_typed', '{\"vi\":\"\\u0110\\u00e0o t\\u1ea1o CME y khoa\\r\\n\\u0110\\u00e0o t\\u1ea1o Online 100%\\r\\nH\\u1ecdc ph\\u00ed ph\\u00f9 h\\u1ee3p\",\"en\":null,\"cn\":null,\"kr\":null}', '2026-03-06 11:20:11', '2026-04-08 01:47:57'),
+(9, 'bank_code', '970422', '2026-04-08 03:41:44', '2026-04-08 03:43:39'),
+(10, 'account_number', '0800148886888', '2026-04-08 03:41:44', '2026-04-08 03:43:39'),
+(11, 'account_owner', 'VU DUC HONG', '2026-04-08 03:41:44', '2026-04-08 03:41:44');
 
 -- --------------------------------------------------------
 
@@ -351,7 +355,7 @@ ALTER TABLE `vdh_roles`
 -- AUTO_INCREMENT cho bảng `vdh_setting`
 --
 ALTER TABLE `vdh_setting`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT cho bảng `vdh_users`
