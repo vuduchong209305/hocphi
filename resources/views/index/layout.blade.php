@@ -116,11 +116,6 @@
                 </h1>
                 <p class="text-gray-600 text-md mb-8 italic"> "Là Phòng Tuyển sinh trực thuộc Viện Khoa học Quản lý Y tế –  được thành lập theo quyết định số 474/QĐ-LHHVN ngày 14/7/2016 của Chủ tịch Liên hiệp các Hội Khoa học kỹ thuật Việt Nam." </p>
 
-                <div class="flex items-center md:gap-6 gap-2 mt-6 text-sm text-gray-500">
-                    <span class="inline-flex items-center md:text-base text-xs"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-world me-2"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" /><path d="M3.6 9h16.8" /><path d="M3.6 15h16.8" /><path d="M11.5 3a17 17 0 0 0 0 18" /><path d="M12.5 3a17 17 0 0 1 0 18" /></svg> 30+ khóa học</span>
-                    <span class="inline-flex items-center md:text-base text-xs"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-briefcase me-2"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 9a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2l0 -9" /><path d="M8 7v-2a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v2" /><path d="M12 12l0 .01" /><path d="M3 13a20 20 0 0 0 18 0" /></svg> 10,000+ giờ học</span>
-                    <span class="inline-flex items-center md:text-base text-xs"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-office me-2"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 18h9v-12l-5 2v5l-4 2v-8l9 -4l7 2v13l-7 3l-9 -3" /></svg> 2000+ học viên</span>
-                </div>
             </div>
             <!-- HERO IMAGE -->
             <div class="relative">
