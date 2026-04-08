@@ -3,12 +3,12 @@
     <head>
 
         <meta charset="utf-8" />
-        <title>Expoplus | Admin</title>
+        <title>Đăng nhập hệ thống ADMIN</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content=""/>
         <meta name="author" content="Expoplus"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}">
+        <link rel="shortcut icon" href="{{ asset('favicon/favicon.ico') }}">
         <!-- App css -->
         <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" id="app-style" />
 
