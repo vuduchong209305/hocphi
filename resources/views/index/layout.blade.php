@@ -100,12 +100,6 @@
                     </div>
                 </nav>
 
-                <div class="flex items-center md:gap-3 gap-1">
-
-                    <a href="javascript:;" class="bg-indigo-700 text-white text-sm font-medium hover:bg-gray-50 hover:text-indigo-700 hover:border-indigo-700 border border-gray-300 md:px-5 px-3 py-2 rounded-lg active:scale-95 transition-all">
-                        {{ __('layout.login') }}
-                    </a>
-                </div>
             </header>
 
         </div>

@@ -8,7 +8,7 @@
         <p class="text-gray-500 mb-10">Vui lòng nhập đầy đủ các thông tin bên dưới</p>
         <div class="max-w-7xl mx-auto px-3 md:gap-6 gap-2 w-full">
             
-            <form method="post" action="#" id="registerForm" enctype="multipart/form-data">
+            <form method="post" action="#" id="registerForm" class="mb-10" enctype="multipart/form-data">
                 <div class="grid md:grid-cols-2 md:gap-4 grid-cols-1 gap-2 mb-10 border border-dashed rounded p-3">
                     <div>
                         <label class="block font-semibold text-gray-900 mb-1" for="fullname">Họ tên <span class="text-red-500">*</span></label>
@@ -162,8 +162,8 @@
                 </div>
 
                 <div class="flex items-center gap-2 mb-6">
-                    <input type="checkbox" class="w-5 h-5 cursor-pointer accent-indigo-500 rounded-[5px] text-gray-300" />
-                    <label class="text-sm text-gray-500 cursor-pointer">
+                    <input type="checkbox" id="checkbox" class="w-5 h-5 cursor-pointer accent-indigo-500 rounded-[5px] text-gray-300" />
+                    <label class="text-sm text-gray-500 cursor-pointer" for="checkbox">
                         Tôi đồng ý xác nhận các nội dung đăng ký
                     </label>
                 </div>
@@ -173,6 +173,10 @@
                 </button>
             </form>
 
+            <div class="text-center">
+                <a href="{{ route('index.purchase') }}" class="italic underline">Thanh toán khóa học đã đăng ký</a>
+            </div>
+            
         </div>
     </div>
 </section>
