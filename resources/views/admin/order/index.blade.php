@@ -52,10 +52,10 @@
             <thead>
                 <tr>
                     <th width="10%">Mã thanh toán</th>
-                    <th width="20%">Khóa học</th>
+                    <th width="30%">Khóa học</th>
                     <th width="20%">Thông tin</th>
                     <th width="15%">Liên hệ</th>
-                    <th width="30%">Giấy tờ</th>
+                    <th width="20%">Giấy tờ</th>
                     <th width="5%">#</th>
                 </tr>
             </thead>
@@ -87,19 +87,19 @@
                             </td>
                             <td>
                                 <a href="{{ viewImage($val->cccd_front) }}" data-fancybox="gallery">
-                                    <img src="{{ viewImage($val->cccd_front) }}" alt="CCCD mặt trước" width="100px" class="rounded">
+                                    <img src="{{ viewImage($val->cccd_front) }}" alt="CCCD mặt trước" width="60px" class="rounded">
                                 </a>
                                 
                                 <a href="{{ viewImage($val->cccd_back) }}" data-fancybox="gallery">
-                                    <img src="{{ viewImage($val->cccd_back) }}" alt="CCCD mặt sau" width="100px" class="rounded">
+                                    <img src="{{ viewImage($val->cccd_back) }}" alt="CCCD mặt sau" width="60px" class="rounded">
                                 </a>
                                 
                                 <a href="{{ viewImage($val->degree) }}" data-fancybox="gallery">
-                                    <img src="{{ viewImage($val->degree) }}" alt="Bằng cấp" width="100px" class="rounded">
+                                    <img src="{{ viewImage($val->degree) }}" alt="Bằng cấp" width="60px" class="rounded">
                                 </a>
 
                                 <a href="{{ viewImage($val->signature) }}" data-fancybox="gallery">
-                                    <img src="{{ viewImage($val->signature) }}" alt="Chữ ký" width="100px" class="rounded">
+                                    <img src="{{ viewImage($val->signature) }}" alt="Chữ ký" width="60px" class="rounded">
                                 </a>
                             </td>
                             <td>

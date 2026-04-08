@@ -103,7 +103,7 @@
                                 {{ $val->title ?? null }}
                             </td>
                             <td>
-                                {{ $val->price ?? null }}
+                                {{ vdh_format_money($val->price) ?? null }}
                             </td>
                             <td>
                                 {!! vdh_status($val->status) !!}
