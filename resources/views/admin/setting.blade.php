@@ -35,6 +35,21 @@
                         <input type="text" id="messenger" class="form-control" placeholder="Messenger" name="option[messenger]" value="{{ HTMLHelper::getOption('messenger') }}">
                     </div>
 
+                    <div class="mb-3">
+                        <label for="bank_code" class="form-label">Mã ngân hàng</label>
+                        <input type="text" id="bank_code" class="form-control" placeholder="Mã ngân hàng" name="option[bank_code]" value="{{ HTMLHelper::getOption('bank_code') }}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="account_number" class="form-label">Số tài khoản</label>
+                        <input type="text" id="account_number" class="form-control" placeholder="Số tài khoản" name="option[account_number]" value="{{ HTMLHelper::getOption('account_number') }}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="account_owner" class="form-label">Chủ tài khoản</label>
+                        <input type="text" id="account_owner" class="form-control" placeholder="Chủ tài khoản" name="option[account_owner]" value="{{ HTMLHelper::getOption('account_owner') }}">
+                    </div>
+
 	    			<div class="form-check form-switch mb-2">
 		        		<input type="hidden" name="option[maintenance]" value="">
 	                    <input class="form-check-input" type="checkbox" role="switch" id="maintenance" name="option[maintenance]" value="1" {{ HTMLHelper::getOption('maintenance') == 1 ? 'checked' : null }}>
@@ -47,6 +62,7 @@
 	                    <label class="form-check-label" for="robot_index">Robot index</label>
 	                </div>
 
+	                
 		            <?php vdh_button_form() ?>
 			        
 			    </div>

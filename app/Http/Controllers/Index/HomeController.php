@@ -37,6 +37,8 @@ class HomeController extends BaseController
             return sendError("Email {$request->email} và số điện thoại {$request->phone} đã đăng ký lớp học này");
         }
 
+        $course = Course::findOrFail($request->course_id);
+
         $order->code = generateCode(10);
         $order->fullname = $request->fullname;
         $order->phone = $request->phone;
@@ -45,6 +47,7 @@ class HomeController extends BaseController
         $order->cccd = $request->cccd;
         $order->birthday = $request->birthday;
         $order->course_id = $request->course_id;
+        $order->price = $course->price;
 
         $order->cccd_front = HTMLHelper::uploadImage('cccd_front');
         $order->cccd_back = HTMLHelper::uploadImage('cccd_back');
@@ -70,7 +73,11 @@ class HomeController extends BaseController
                 'code' => $item->code,
                 'paid_at' => $item->paid_at ? "Đã thanh toán: {$item->paid_at}" : 'Chưa thanh toán',
                 'course' => $item->course->title ?? '',
-                'price' => number_format($item->course->price),
+                'price' => $item->price,
+                'price_format' => vdh_format_money($item->price),
+                'bank_code' => HTMLHelper::getOption('bank_code'),
+                'account_number' => HTMLHelper::getOption('account_number'),
+                'account_owner' => HTMLHelper::getOption('account_owner'),
                 'created_at' => $item->created_at->format('d/m/Y'),
             ];
         });

@@ -90,12 +90,12 @@
 						            <div class="flex items-center justify-between">
 						                <span class="text-xs text-gray-600">Tổng thanh toán</span>
 						                <span class="text-lg font-bold text-indigo-600">
-						                    ${order?.price} VNĐ
+						                    ${order?.price_format} VNĐ
 						                </span>
 						            </div>
 
-						    		<div class="mx-auto ${order?.paid_at == 'Đã thanh toán' ? 'hidden' : ''}">
-						    			<img src="https://api.vietqr.io/image/970407-2342868686-Olvjj43.jpg?accountName=VU%20DUC%20HONG&amount=${order?.price}&addInfo=CME%20${order?.code}%20TT" width="400px">
+						    		<div class="flex justify-center ${order?.paid_at == 'Đã thanh toán' ? 'hidden' : ''}">
+						    			<img src="https://api.vietqr.io/image/${order?.bank_code}-${order?.account_number}-Olvjj43.jpg?accountName=${order?.account_owner}&amount=${order?.price}&addInfo=CME%20${order?.code}%20TT" width="400px">
 						    		</div>
 						    		
 						        </div>
