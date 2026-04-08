@@ -64,10 +64,10 @@
 						            <!-- Header -->
 						            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-3">
 						                <h3 class="font-semibold text-gray-800 text-base md:text-lg line-clamp-1">
-						                    ${order.course}
+						                    ${order?.course}
 						                </h3>
 						                <span class="text-xs md:text-sm text-indigo-600 font-medium">
-						                    ${order.paid_at}
+						                    ${order?.paid_at}
 						                </span>
 						            </div>
 
@@ -75,11 +75,11 @@
 						            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-3 text-sm">
 						                <div>
 						                    <span class="text-gray-600">Mã thanh toán:</span>
-						                    <span class="font-medium text-gray-800">${order.code}</span>
+						                    <span class="font-medium text-gray-800">${order?.code}</span>
 						                </div>
 						                <div>
 						                    <span class="text-gray-600">Ngày đăng ký:</span>
-						                    <span class="font-medium text-gray-800">${order.created_at}</span>
+						                    <span class="font-medium text-gray-800">${order?.created_at}</span>
 						                </div>
 						            </div>
 
@@ -90,10 +90,14 @@
 						            <div class="flex items-center justify-between">
 						                <span class="text-xs text-gray-600">Tổng thanh toán</span>
 						                <span class="text-lg font-bold text-indigo-600">
-						                    ${order.price} VNĐ
+						                    ${order?.price} VNĐ
 						                </span>
 						            </div>
 
+						    		<div class="mx-auto ${order?.paid_at == 'Đã thanh toán' ? 'hidden' : ''}">
+						    			<img src="https://api.vietqr.io/image/970407-2342868686-Olvjj43.jpg?accountName=VU%20DUC%20HONG&amount=${order?.price}&addInfo=CME%20${order?.code}%20TT" width="400px">
+						    		</div>
+						    		
 						        </div>
 						    `;
 						});
