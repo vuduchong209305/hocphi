@@ -110,4 +110,5 @@ Route::group(['namespace' => 'Index', 'as' => 'index.', 'middleware' => ['Locale
 
     Route::get('thanh-toan', ['as' => 'purchase', 'uses' => 'HomeController@purchase']);
     Route::get('order', ['as' => 'order', 'uses' => 'HomeController@order']);
+    Route::get('opening', ['as' => 'opening', 'uses' => 'HomeController@opening']);
 });

@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 09, 2026 lúc 07:33 AM
--- Phiên bản máy phục vụ: 10.4.32-MariaDB
--- Phiên bản PHP: 8.2.12
+-- Host: localhost
+-- Generation Time: Apr 09, 2026 at 10:49 AM
+-- Server version: 10.5.29-MariaDB-ubu2004
+-- PHP Version: 8.2.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `hocphi`
+-- Database: `zz7j_dangkydz7mn`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `vdh_admins`
+-- Table structure for table `vdh_admins`
 --
 
 CREATE TABLE `vdh_admins` (
@@ -47,7 +47,7 @@ CREATE TABLE `vdh_admins` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=DYNAMIC;
 
 --
--- Đang đổ dữ liệu cho bảng `vdh_admins`
+-- Dumping data for table `vdh_admins`
 --
 
 INSERT INTO `vdh_admins` (`id`, `email`, `password`, `phone`, `avatar`, `status`, `fullname`, `birthday`, `passport`, `role_id`, `address`, `forgot_pass_token`, `updated_forgot_token`, `remember_token`, `created_at`, `updated_at`) VALUES
@@ -58,7 +58,7 @@ INSERT INTO `vdh_admins` (`id`, `email`, `password`, `phone`, `avatar`, `status`
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `vdh_course`
+-- Table structure for table `vdh_course`
 --
 
 CREATE TABLE `vdh_course` (
@@ -72,12 +72,12 @@ CREATE TABLE `vdh_course` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=DYNAMIC;
 
 --
--- Đang đổ dữ liệu cho bảng `vdh_course`
+-- Dumping data for table `vdh_course`
 --
 
 INSERT INTO `vdh_course` (`id`, `title`, `price`, `sort`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Kiểm soát nhiễm khuẩn trong các cơ sở khám bệnh chữa bệnh (CME 48 tiết)', 2200000, 1, 1, '2025-07-25 04:39:18', '2026-04-09 05:16:34'),
-(2, 'Sư phạm y học cơ bản (CME 80 tiết)', 2500000, 2, 1, '2025-07-25 04:41:05', '2026-04-09 05:18:28'),
+(1, 'Kiểm soát nhiễm khuẩn trong các cơ sở khám bệnh chữa bệnh (CME 48 tiết)', 2200000, 1, 1, '2025-07-25 04:39:18', '2026-04-08 07:27:19'),
+(2, 'Sư phạm y học cơ bản (CME 80 tiết)', 2500000, 2, 1, '2025-07-25 04:41:05', '2026-04-08 07:27:34'),
 (3, 'An toàn tiêm chủng (CME 40 tiết)', 2200000, 14, 1, '2025-07-25 04:41:16', '2026-04-08 07:29:03'),
 (4, 'Quản lý bệnh viện (CME 48 tiết)', 2200000, 15, 1, '2025-07-25 04:41:34', '2026-04-08 07:29:08'),
 (5, 'Quản lý chất lượng bệnh viện (CME 48 tiết)', 2200000, 16, 1, '2025-07-25 04:41:39', '2026-04-08 07:29:13'),
@@ -93,7 +93,7 @@ INSERT INTO `vdh_course` (`id`, `title`, `price`, `sort`, `status`, `created_at`
 (15, 'Nuôi con bằng sữa mẹ  (CME 24 tiết)', 1500000, 26, 1, '2026-04-07 08:46:41', '2026-04-08 07:30:16'),
 (16, 'Quản lý chất lượng phòng xét nghiệm (CME 24 tiết)', 1500000, 13, 1, '2026-04-07 08:46:44', '2026-04-08 07:28:56'),
 (17, 'An toàn sinh học phòng xét nghiệm (CME 24 tiết)', 1500000, 5, 1, '2026-04-07 08:46:48', '2026-04-08 07:28:00'),
-(18, 'Kỹ năng giao tiếp ứng xử cho cán bộ Y tế (CME 24 tiết)', 1500000, 3, 1, '2026-04-07 08:46:51', '2026-04-09 04:42:38'),
+(18, 'Kỹ năng giao tiếp ứng xử cho cán bộ Y tế (CME 24 tiết)', 1500000, 3, 1, '2026-04-07 08:46:51', '2026-04-08 07:27:50'),
 (19, 'Quản lý Y tế (CME 24 tiết)', 1500000, 6, 1, '2026-04-07 08:46:54', '2026-04-08 07:28:04'),
 (20, 'Tư vấn xét nghiệm HIV (CME 24 tiết)', 1500000, 7, 1, '2026-04-07 08:46:56', '2026-04-08 07:28:17'),
 (21, 'Phòng chống các bệnh lây nhiễm qua đường máu và dịch sinh học (CME 24 tiết)', 1500000, 8, 1, '2026-04-07 08:47:00', '2026-04-08 07:28:23'),
@@ -106,7 +106,7 @@ INSERT INTO `vdh_course` (`id`, `title`, `price`, `sort`, `status`, `created_at`
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `vdh_languages`
+-- Table structure for table `vdh_languages`
 --
 
 CREATE TABLE `vdh_languages` (
@@ -122,7 +122,7 @@ CREATE TABLE `vdh_languages` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
 
 --
--- Đang đổ dữ liệu cho bảng `vdh_languages`
+-- Dumping data for table `vdh_languages`
 --
 
 INSERT INTO `vdh_languages` (`id`, `name`, `lang_class`, `title`, `description`, `status`, `image`, `created_at`, `updated_at`) VALUES
@@ -134,32 +134,7 @@ INSERT INTO `vdh_languages` (`id`, `name`, `lang_class`, `title`, `description`,
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `vdh_opening`
---
-
-CREATE TABLE `vdh_opening` (
-  `course_id` int(11) NOT NULL,
-  `code` varchar(20) DEFAULT NULL,
-  `start_date` varchar(255) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Đang đổ dữ liệu cho bảng `vdh_opening`
---
-
-INSERT INTO `vdh_opening` (`course_id`, `code`, `start_date`, `created_at`, `updated_at`) VALUES
-(1, 'KSNK-1046', '10-04-2026', NULL, NULL),
-(1, 'KSNK-1146', '11-04-2026', NULL, NULL),
-(1, 'KSNK-1246', '12-04-2026', NULL, NULL),
-(2, 'SPYH-1046', '10-04-2026', NULL, NULL),
-(2, 'SPYH-1066', '16-04-2026', NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `vdh_orders`
+-- Table structure for table `vdh_orders`
 --
 
 CREATE TABLE `vdh_orders` (
@@ -176,32 +151,24 @@ CREATE TABLE `vdh_orders` (
   `cccd_back` varchar(255) DEFAULT NULL,
   `degree` varchar(255) DEFAULT NULL,
   `signature` varchar(255) DEFAULT NULL,
-  `gender` tinyint(1) DEFAULT NULL COMMENT '1 - nam, 2 - nữ',
   `price` decimal(15,0) DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `address_cme` varchar(255) DEFAULT NULL,
-  `education` tinyint(4) DEFAULT NULL,
   `paid_at` timestamp NULL DEFAULT NULL,
-  `graduate_year` varchar(4) DEFAULT NULL,
-  `graduate_address` varchar(255) DEFAULT NULL,
-  `is_vat` tinyint(1) DEFAULT NULL,
-  `mst` varchar(20) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `vdh_orders`
+-- Dumping data for table `vdh_orders`
 --
 
-INSERT INTO `vdh_orders` (`id`, `code`, `fullname`, `email`, `phone`, `company`, `cccd`, `birthday`, `course_id`, `cccd_front`, `cccd_back`, `degree`, `signature`, `gender`, `price`, `address`, `address_cme`, `education`, `paid_at`, `graduate_year`, `graduate_address`, `is_vat`, `mst`, `created_at`, `updated_at`) VALUES
-(1, 'BPKFHSYOXL', 'Vũ Đức Hồng', 'vuduchong209305@gmail.com', '0986209305', 'Bệnh viện E', '022093001103', '06-06-1993', 2, 'images/2026/04/07/ElmpzSYD1OGhdqx59iK4.webp', 'images/2026/04/07/2JbDz4ibi2lIBHFHNSEi.webp', 'images/2026/04/07/dxMI3SiojOLuyEF1uY7N.webp', 'images/2026/04/07/TGySFfZOZ4cf8nTcbNha.webp', NULL, 500000, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2026-04-07 14:26:50', '2026-04-08 02:34:29'),
-(2, '6GBA8TOMSJ', 'Phan Tuấn Khôi', 'khoipt1993@gmail.com', '0913206810', 'Vien Khoa hoc Quan ly Y te', '001093015591', '21111993', 18, 'images/2026/04/08/ckC9LbT8EqiMxbSfldnj.webp', 'images/2026/04/08/JwYe1DsPVQz0wvtB71fs.webp', 'images/2026/04/08/bExhxQZTDfdTlo55nStT.webp', 'images/2026/04/08/4DYk7hE0sTgjhasvimB2.webp', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2026-04-08 03:52:49', '2026-04-08 03:52:49');
+INSERT INTO `vdh_orders` (`id`, `code`, `fullname`, `email`, `phone`, `company`, `cccd`, `birthday`, `course_id`, `cccd_front`, `cccd_back`, `degree`, `signature`, `price`, `paid_at`, `created_at`, `updated_at`) VALUES
+(1, 'BPKFHSYOXL', 'Vũ Đức Hồng', 'vuduchong209305@gmail.com', '0986209305', 'Bệnh viện E', '022093001103', '06-06-1993', 2, 'images/2026/04/07/ElmpzSYD1OGhdqx59iK4.webp', 'images/2026/04/07/2JbDz4ibi2lIBHFHNSEi.webp', 'images/2026/04/07/dxMI3SiojOLuyEF1uY7N.webp', 'images/2026/04/07/TGySFfZOZ4cf8nTcbNha.webp', 500000, NULL, '2026-04-07 14:26:50', '2026-04-08 02:34:29'),
+(2, '6GBA8TOMSJ', 'Phan Tuấn Khôi', 'khoipt1993@gmail.com', '0913206810', 'Vien Khoa hoc Quan ly Y te', '001093015591', '21111993', 18, 'images/2026/04/08/ckC9LbT8EqiMxbSfldnj.webp', 'images/2026/04/08/JwYe1DsPVQz0wvtB71fs.webp', 'images/2026/04/08/bExhxQZTDfdTlo55nStT.webp', 'images/2026/04/08/4DYk7hE0sTgjhasvimB2.webp', NULL, NULL, '2026-04-08 03:52:49', '2026-04-08 03:52:49');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `vdh_roles`
+-- Table structure for table `vdh_roles`
 --
 
 CREATE TABLE `vdh_roles` (
@@ -216,7 +183,7 @@ CREATE TABLE `vdh_roles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=DYNAMIC;
 
 --
--- Đang đổ dữ liệu cho bảng `vdh_roles`
+-- Dumping data for table `vdh_roles`
 --
 
 INSERT INTO `vdh_roles` (`id`, `name`, `permission`, `avatar`, `description`, `status`, `created_at`, `updated_at`) VALUES
@@ -227,7 +194,7 @@ INSERT INTO `vdh_roles` (`id`, `name`, `permission`, `avatar`, `description`, `s
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `vdh_setting`
+-- Table structure for table `vdh_setting`
 --
 
 CREATE TABLE `vdh_setting` (
@@ -239,7 +206,7 @@ CREATE TABLE `vdh_setting` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci ROW_FORMAT=DYNAMIC;
 
 --
--- Đang đổ dữ liệu cho bảng `vdh_setting`
+-- Dumping data for table `vdh_setting`
 --
 
 INSERT INTO `vdh_setting` (`id`, `option_key`, `option_value`, `created_at`, `updated_at`) VALUES
@@ -258,7 +225,7 @@ INSERT INTO `vdh_setting` (`id`, `option_key`, `option_value`, `created_at`, `up
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `vdh_users`
+-- Table structure for table `vdh_users`
 --
 
 CREATE TABLE `vdh_users` (
@@ -303,102 +270,96 @@ CREATE TABLE `vdh_users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=DYNAMIC;
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `vdh_admins`
+-- Indexes for table `vdh_admins`
 --
 ALTER TABLE `vdh_admins`
   ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
--- Chỉ mục cho bảng `vdh_course`
+-- Indexes for table `vdh_course`
 --
 ALTER TABLE `vdh_course`
   ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
--- Chỉ mục cho bảng `vdh_languages`
+-- Indexes for table `vdh_languages`
 --
 ALTER TABLE `vdh_languages`
   ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
--- Chỉ mục cho bảng `vdh_opening`
---
-ALTER TABLE `vdh_opening`
-  ADD PRIMARY KEY (`course_id`,`start_date`) USING BTREE;
-
---
--- Chỉ mục cho bảng `vdh_orders`
+-- Indexes for table `vdh_orders`
 --
 ALTER TABLE `vdh_orders`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `code` (`code`);
 
 --
--- Chỉ mục cho bảng `vdh_roles`
+-- Indexes for table `vdh_roles`
 --
 ALTER TABLE `vdh_roles`
   ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
--- Chỉ mục cho bảng `vdh_setting`
+-- Indexes for table `vdh_setting`
 --
 ALTER TABLE `vdh_setting`
   ADD PRIMARY KEY (`id`) USING BTREE,
   ADD UNIQUE KEY `option_key` (`option_key`) USING BTREE;
 
 --
--- Chỉ mục cho bảng `vdh_users`
+-- Indexes for table `vdh_users`
 --
 ALTER TABLE `vdh_users`
   ADD PRIMARY KEY (`id`) USING BTREE,
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `vdh_admins`
+-- AUTO_INCREMENT for table `vdh_admins`
 --
 ALTER TABLE `vdh_admins`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT cho bảng `vdh_course`
+-- AUTO_INCREMENT for table `vdh_course`
 --
 ALTER TABLE `vdh_course`
   MODIFY `id` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
--- AUTO_INCREMENT cho bảng `vdh_languages`
+-- AUTO_INCREMENT for table `vdh_languages`
 --
 ALTER TABLE `vdh_languages`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT cho bảng `vdh_orders`
+-- AUTO_INCREMENT for table `vdh_orders`
 --
 ALTER TABLE `vdh_orders`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT cho bảng `vdh_roles`
+-- AUTO_INCREMENT for table `vdh_roles`
 --
 ALTER TABLE `vdh_roles`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT cho bảng `vdh_setting`
+-- AUTO_INCREMENT for table `vdh_setting`
 --
 ALTER TABLE `vdh_setting`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT cho bảng `vdh_users`
+-- AUTO_INCREMENT for table `vdh_users`
 --
 ALTER TABLE `vdh_users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;

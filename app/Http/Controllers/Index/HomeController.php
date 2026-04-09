@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Index;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Course;
+use App\Models\Opening;
 use App\Helpers\HTMLHelper;
 use Str;
 
@@ -22,10 +23,16 @@ class HomeController extends BaseController
             'fullname' => 'required',
             'phone' => 'required',
             'email' => 'required|email',
-            'company' => 'required',
             'cccd' => 'required',
             'birthday' => 'required',
             'course_id' => 'required',
+            'gender' => 'required',
+            'birthplace' => 'required',
+            'address' => 'required',
+            'address_cme' => 'required',
+            'education' => 'required',
+            'graduate_year' => 'required',
+            'graduate_address' => 'required',
 
             'cccd_front' => 'required|image',
             'cccd_back' => 'required|image',
@@ -84,6 +91,21 @@ class HomeController extends BaseController
 
         return sendResponse($data);
     
+    }
+
+    public function opening(Request $request)
+    {
+        $openings = Opening::where('course_id', $request->course_id)->orderBy('start_date')->get();
+
+        $data = $openings->map(function ($item) {
+            return [
+                'id' => $item->id,
+                'code' => $item->code,
+                'start_date' => $item->start_date,
+            ];
+        });
+
+        return sendResponse($data);
     }
 
     public function page404()

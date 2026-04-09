@@ -20,4 +20,9 @@ class Course extends Model
     {
         return $this->hasMany(Order::class, 'course_id');
     }
+
+    public function openings()
+    {
+        return $this->hasMany(Opening::class, 'course_id');
+    }
 }

@@ -414,14 +414,6 @@
 
         @stack('scripts')
 
-        <script>
-            $('.remove_image').click(function() {
-                var parents = $(this).parents('.group_image')
-                parents.find('.image_value').val('')
-                parents.find('.preview').attr('src', '{{ no_image() }}')
-                parents.find('[data-fancybox=gallery]').attr('href', '{{ no_image() }}')
-            });
-        </script>
     </body> 
 
 </html>

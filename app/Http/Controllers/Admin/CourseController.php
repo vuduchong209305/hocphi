@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Course;
+use App\Models\Opening;
 
 class CourseController extends Controller
 {
@@ -27,7 +28,33 @@ class CourseController extends Controller
         $course->price = $request->price;
         $course->status = $request->boolean('status');
         
-        if($course->save()) return back()->with("success", "Thành công");
+        if($course->save()) {
+            // xoá cũ
+            Opening::where('course_id', $course->id)->delete();
+
+            if (!empty($request->openings)) {
+
+                $codes = $request->openings['code'] ?? [];
+                $dates = $request->openings['start_date'] ?? [];
+
+                $data = [];
+
+                foreach ($codes as $index => $code) {
+
+                    if (!empty($code) && !empty($dates[$index])) {
+                        $data[] = [
+                            'course_id' => $course->id,
+                            'code' => $code,
+                            'start_date' => $dates[$index]
+                        ];
+                    }
+                }
+
+                Opening::insert($data);
+            }
+
+            return back()->with("success", "Thành công");
+        }
         
         return back()->withErrors('Đã có lỗi xảy ra, vui lòng thử lại');
     }

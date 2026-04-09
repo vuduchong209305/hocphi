@@ -51,8 +51,20 @@
                     </div>
 
                     <div class="form-group mb-3">
-                        <label class="form-label" for="price">Giá </label>
-                        <input type="text" class="form-control" id="price" name="price" placeholder="Giá"  autofocus="" value="{{ !empty($course->price) ? $course->price : old('price') }}">
+                        <label class="form-label" for="price">Giá <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="price" name="price" placeholder="Giá" autofocus="" required value="{{ !empty($course->price) ? $course->price : old('price') }}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Danh sách khai giảng</label>
+
+                        <div id="opening-wrapper" class="d-flex flex-column gap-2">
+                            <!-- item sẽ được add vào đây -->
+                        </div>
+
+                        <button type="button" id="add-opening" class="btn btn-sm btn-primary mt-2">
+                            + Thêm ngày khai giảng
+                        </button>
                     </div>
 
                     <?php vdh_input_status(!empty($course->status) ? $course->status : old('status')) ?>
@@ -83,8 +95,9 @@
                                 <input type="checkbox" class="form-check-input checkall">
                             </th>
                             <th width="5%">STT</th>
-                            <th width="55%">Tên</th>
-                            <th width="15%">Giá</th>
+                            <th width="35%">Tên</th>
+                            <th width="25%">Mã lớp - Khai giảng</th>
+                            <th width="10%">Giá</th>
                             <th width="10%">Trạng thái</th>
                             <th width="10%">#</th>
                         </tr>
@@ -101,6 +114,15 @@
                             </td>
                             <td>
                                 {{ $val->title ?? null }}
+                            </td>
+                            <td>
+                                @if(!empty($val->openings))
+                                <ul>
+                                    @foreach($val->openings as $item)
+                                        <li>{{ $item->code ?? null }} --- {{ $item->start_date ?? null }}</li>
+                                    @endforeach
+                                </ul>
+                                @endif
                             </td>
                             <td>
                                 {{ vdh_format_money($val->price) ?? null }}
@@ -161,6 +183,79 @@
         }
     });
 </script>
+
+<script>
+    $(document).ready(function () {
+
+        // thêm item
+        $('#add-opening').click(function () {
+            $('#opening-wrapper').append(renderOpeningItem());
+
+            initFlatpickr();
+        });
+
+        // xoá item
+        $(document).on('click', '.remove-opening', function () {
+            $(this).closest('.opening-item').remove();
+        });
+
+        // init flatpickr
+        function initFlatpickr() {
+            $('.flatpickr-date').flatpickr({
+                dateFormat: "d-m-Y"
+            });
+        }
+
+        // init lần đầu
+        initFlatpickr();
+
+        if ($('#opening-wrapper .opening-item').length === 0) {
+            $('#add-opening').click();
+        }
+    });
+
+    $(document).on('click', '.remove-opening', function () {
+        if ($('.opening-item').length > 1) {
+            $(this).closest('.opening-item').remove();
+        }
+    });
+
+    function renderOpeningItem(code = '', date = '') {
+        return `
+            <div class="opening-item d-flex flex-column flex-md-row gap-2 align-items-center">
+
+                <input type="text" 
+                    name="openings[code][]" 
+                    class="form-control" 
+                    placeholder="Mã lớp"
+                    value="${code}"
+                    required
+                >
+
+                <input type="text" 
+                    name="openings[start_date][]" 
+                    class="form-control flatpickr-date" 
+                    placeholder="Ngày khai giảng"
+                    value="${date}"
+                    required
+                >
+
+                <button type="button" class="btn btn-danger btn-sm remove-opening">
+                    ✕
+                </button>
+
+            </div>
+        `;
+    }
+
+    @foreach($course->openings ?? [] as $item)
+        $('#opening-wrapper').append(renderOpeningItem(
+            "{{ $item->code }}",
+            "{{ $item->start_date }}"
+        ));
+    @endforeach
+</script>
+
 @endpush
 
 @endsection
