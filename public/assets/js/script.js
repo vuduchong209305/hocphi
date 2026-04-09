@@ -19,8 +19,7 @@ $(document).ready(function(){
         });
 
         $(".flatpickr").flatpickr({
-            dateFormat: "d-m-Y",
-            mode: "multiple"
+            dateFormat: "d-m-Y"
             // locale: {
             //     ...flatpickr.l10ns.vn
             // }

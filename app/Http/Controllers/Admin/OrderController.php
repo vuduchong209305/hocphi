@@ -32,6 +32,19 @@ class OrderController extends Controller
         $order->email    = $request->email;
         $order->phone    = $request->phone;
         $order->birthday = $request->birthday;
+
+        $order->cccd = $request->cccd;
+        $order->gender = $request->gender;
+        $order->birthplace = $request->birthplace;
+        $order->address = $request->address;
+        $order->address_cme = $request->address_cme;
+        $order->graduate_year = $request->graduate_year;
+        $order->graduate_address = $request->graduate_address;
+        $order->education = $request->education;
+        $order->price = $request->price;
+        $order->class_code = $request->class_code;
+        $order->start_date = $request->start_date;
+        
         $order->paid_at = $request->paid_at == 1 ? now() : null;
 
         if($order->save()) {

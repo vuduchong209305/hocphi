@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 09, 2026 lúc 07:33 AM
+-- Thời gian đã tạo: Th4 09, 2026 lúc 11:52 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -171,6 +171,7 @@ CREATE TABLE `vdh_orders` (
   `company` varchar(255) DEFAULT NULL,
   `cccd` varchar(20) DEFAULT NULL,
   `birthday` varchar(15) DEFAULT NULL,
+  `birthplace` varchar(255) DEFAULT NULL,
   `course_id` int(11) DEFAULT NULL,
   `cccd_front` varchar(255) DEFAULT NULL,
   `cccd_back` varchar(255) DEFAULT NULL,
@@ -186,6 +187,8 @@ CREATE TABLE `vdh_orders` (
   `graduate_address` varchar(255) DEFAULT NULL,
   `is_vat` tinyint(1) DEFAULT NULL,
   `mst` varchar(20) DEFAULT NULL,
+  `class_code` varchar(15) DEFAULT NULL,
+  `start_date` varchar(15) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -194,9 +197,8 @@ CREATE TABLE `vdh_orders` (
 -- Đang đổ dữ liệu cho bảng `vdh_orders`
 --
 
-INSERT INTO `vdh_orders` (`id`, `code`, `fullname`, `email`, `phone`, `company`, `cccd`, `birthday`, `course_id`, `cccd_front`, `cccd_back`, `degree`, `signature`, `gender`, `price`, `address`, `address_cme`, `education`, `paid_at`, `graduate_year`, `graduate_address`, `is_vat`, `mst`, `created_at`, `updated_at`) VALUES
-(1, 'BPKFHSYOXL', 'Vũ Đức Hồng', 'vuduchong209305@gmail.com', '0986209305', 'Bệnh viện E', '022093001103', '06-06-1993', 2, 'images/2026/04/07/ElmpzSYD1OGhdqx59iK4.webp', 'images/2026/04/07/2JbDz4ibi2lIBHFHNSEi.webp', 'images/2026/04/07/dxMI3SiojOLuyEF1uY7N.webp', 'images/2026/04/07/TGySFfZOZ4cf8nTcbNha.webp', NULL, 500000, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2026-04-07 14:26:50', '2026-04-08 02:34:29'),
-(2, '6GBA8TOMSJ', 'Phan Tuấn Khôi', 'khoipt1993@gmail.com', '0913206810', 'Vien Khoa hoc Quan ly Y te', '001093015591', '21111993', 18, 'images/2026/04/08/ckC9LbT8EqiMxbSfldnj.webp', 'images/2026/04/08/JwYe1DsPVQz0wvtB71fs.webp', 'images/2026/04/08/bExhxQZTDfdTlo55nStT.webp', 'images/2026/04/08/4DYk7hE0sTgjhasvimB2.webp', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2026-04-08 03:52:49', '2026-04-08 03:52:49');
+INSERT INTO `vdh_orders` (`id`, `code`, `fullname`, `email`, `phone`, `company`, `cccd`, `birthday`, `birthplace`, `course_id`, `cccd_front`, `cccd_back`, `degree`, `signature`, `gender`, `price`, `address`, `address_cme`, `education`, `paid_at`, `graduate_year`, `graduate_address`, `is_vat`, `mst`, `class_code`, `start_date`, `created_at`, `updated_at`) VALUES
+(1, 'B2AZ06KWL8', 'Vũ Đức Hồng', 'vuduchong209305@gmail.com', '0986209305', 'Funky Global', '022093001103', '06-06-1993', 'Quảng Ninh', 1, 'images/2026/04/09/ZmM9MzfnKZY5SrqfHnhD.webp', 'images/2026/04/09/yalrLhqbOgVRGkBfLjWH.webp', 'images/2026/04/09/IqmIwARr6TKh2Qyptzi2.webp', 'images/2026/04/09/WiaRZ0Irc7OnE3UGgdcz.webp', 1, 2200000, 'Chung cư Nhật Tảo 2', 'Chung cư Nhật Tảo 2', 4, NULL, '2015', 'DH Mỏ Địa Chất', NULL, '123123123', 'KSNK-1046', '10-04-2026', '2026-04-09 09:52:06', '2026-04-09 09:52:06');
 
 -- --------------------------------------------------------
 
@@ -383,7 +385,7 @@ ALTER TABLE `vdh_languages`
 -- AUTO_INCREMENT cho bảng `vdh_orders`
 --
 ALTER TABLE `vdh_orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `vdh_roles`

@@ -163,6 +163,26 @@
     <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
     <script src="{{ asset('index/js/script.js') }}"></script>
+
+    <script>
+        var typed = document.getElementById("typed");
+        if(typed) {
+            @php
+            $typed_content = explode("\n", HTMLHelper::getOptionLang('hero_typed'));
+            @endphp
+            var typedStrings = @json($typed_content);
+            new Typed('#typed', {
+                strings: typedStrings.map(t => `<strong>${t}</strong>`),
+                typeSpeed: 80,
+                backSpeed: 20,
+                backDelay: 1500,
+                smartBackspace: true,
+                loop: true,
+                cursorChar: '<span class="text-indigo-700">|</span>'
+            });
+        }
+    </script>
+    
     @include('index.alert')
     @stack('scripts')
 </body>

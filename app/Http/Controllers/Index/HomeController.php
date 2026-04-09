@@ -46,6 +46,20 @@ class HomeController extends BaseController
 
         $course = Course::findOrFail($request->course_id);
 
+        if (!empty($request->opening_select)) {
+
+            [$code, $start_date] = explode('|', $request->opening_select);
+
+            $opening = Opening::where('code', $code)
+                                ->where('start_date', $start_date)
+                                ->first();
+
+            if ($opening) {
+                $order->class_code = $opening->code;
+                $order->start_date = $opening->start_date;
+            }
+        }
+
         $order->code = generateCode(10);
         $order->fullname = $request->fullname;
         $order->phone = $request->phone;
@@ -55,6 +69,15 @@ class HomeController extends BaseController
         $order->birthday = $request->birthday;
         $order->course_id = $request->course_id;
         $order->price = $course->price;
+
+        $order->gender = $request->gender;
+        $order->birthplace = $request->birthplace;
+        $order->address = $request->address;
+        $order->address_cme = $request->address_cme;
+        $order->education = $request->education;
+        $order->graduate_year = $request->graduate_year;
+        $order->graduate_address = $request->graduate_address;
+        $order->mst = $request->mst;
 
         $order->cccd_front = HTMLHelper::uploadImage('cccd_front');
         $order->cccd_back = HTMLHelper::uploadImage('cccd_back');
@@ -99,7 +122,6 @@ class HomeController extends BaseController
 
         $data = $openings->map(function ($item) {
             return [
-                'id' => $item->id,
                 'code' => $item->code,
                 'start_date' => $item->start_date,
             ];

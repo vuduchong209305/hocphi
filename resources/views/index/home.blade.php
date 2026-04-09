@@ -61,7 +61,7 @@
                     </div>
                     <div>
                         <label class="block font-semibold text-gray-900 mb-1" for="birthday">Ngày tháng năm sinh <span class="text-red-500 italic text-sm">(Bắt buộc)</span></label>
-                        <input type="text" placeholder="dd-mm-yyyy" name="birthday" id="birthday" class="w-full px-3 py-3 border border-gray-300 rounded-lg text-sm outline-none focus:border-indigo-500 transition-colors" inputmode="numeric" pattern="\d*" required/>  
+                        <input type="text" placeholder="dd-mm-yyyy" name="birthday" id="birthday" class="w-full px-3 py-3 border border-gray-300 rounded-lg text-sm outline-none focus:border-indigo-500 transition-colors" required/>  
                     </div>
                     <div>
                         <label class="block font-semibold text-gray-900 mb-1" for="birthplace">Nơi sinh <span class="text-red-500 italic text-sm">(Bắt buộc)</span></label>
@@ -100,7 +100,7 @@
 
                     <div>
                         <label class="block font-semibold text-gray-900 mb-1" for="mst">Mã số thuế (nếu xuất hóa đơn)</label>
-                        <input type="text" placeholder="Mã số thuế (nếu xuất hóa đơn)" name="mst" id="mst" class="w-full px-3 py-3 border border-gray-300 rounded-lg text-sm outline-none focus:border-indigo-500 transition-colors" required />
+                        <input type="text" placeholder="Mã số thuế (nếu xuất hóa đơn)" name="mst" id="mst" class="w-full px-3 py-3 border border-gray-300 rounded-lg text-sm outline-none focus:border-indigo-500 transition-colors" />
                     </div>
                 </div>
 
@@ -234,25 +234,6 @@
 </section>
 
 @push('scripts')
-    <script>
-        var typed = document.getElementById("typed");
-        if(typed) {
-            @php
-            $typed_content = explode("\n", HTMLHelper::getOptionLang('hero_typed'));
-            @endphp
-            var typedStrings = @json($typed_content);
-            new Typed('#typed', {
-                strings: typedStrings.map(t => `<strong>${t}</strong>`),
-                typeSpeed: 80,
-                backSpeed: 20,
-                backDelay: 1500,
-                smartBackspace: true,
-                loop: true,
-                cursorChar: '<span class="text-indigo-700">|</span>'
-            });
-        }
-    </script>
-
     <script>
         document.querySelectorAll('.upload-box').forEach(box => {
             const input = box.querySelector('.input-file');
@@ -473,9 +454,9 @@
 
                         res.data.forEach(item => {
                             html += `
-                                <label class="border border-gray-700 rounded p-3 flex items-center gap-3 cursor-pointer hover:border-indigo-500 transition">
+                                <label class="border border-gray-300 rounded p-3 flex items-center gap-3 cursor-pointer hover:border-indigo-500 transition">
 
-                                    <input type="radio" name="opening_id" value="${item.id}" class="w-4 h-4 accent-indigo-500" required>
+                                    <input type="radio" name="opening_select" value="${item.code}|${item.start_date}" class="w-4 h-4 accent-indigo-500" required>
 
                                     <div class="flex flex-col">
                                         <span class="text-sm text-gray-700">
