@@ -52,9 +52,8 @@
             <thead>
                 <tr>
                     <th width="10%">Mã thanh toán</th>
-                    <th width="30%">Khóa học</th>
-                    <th width="20%">Thông tin</th>
-                    <th width="15%">Liên hệ</th>
+                    <th width="40%">Khóa học</th>
+                    <th width="25%">Thông tin</th>
                     <th width="20%">Giấy tờ</th>
                     <th width="5%">#</th>
                 </tr>
@@ -72,6 +71,8 @@
                             </td>
                             <td>
                                 <p class="mb-0">Tên: {{ $val->course->title ?? null }}</p>
+                                <p class="mb-0">Lớp: {{ $val->class_code ?? null }}</p>
+                                <p class="mb-0">Khai giảng: {{ $val->start_date ?? null }}</p>
                                 <p class="mb-0">Giá: {{ $val->price ? vdh_format_money($val->price) : 'N/A' }}</p>
                                 <p class="mb-0">Ngày đăng ký: {{ $val->created_at }}</p>
                             </td>
@@ -79,11 +80,9 @@
                                 <p class="mb-0">Họ tên: {{ $val->fullname ?? null }}</p>
                                 <p class="mb-0">Email: {{ $val->email ?? null }}</p>
                                 <p class="mb-0">Số điện thoại: {{ $val->phone ?? null }}</p>
-                            </td>
-                            <td>
-                                <p class="mb-0">Đơn vị: {{ $val->company ?? null }}</p>
                                 <p class="mb-0">CCCD: {{ $val->cccd ?? null }}</p>
                                 <p class="mb-0">Năm sinh: {{ $val->birthday ?? null }}</p>
+                                <p class="mb-0">Đơn vị: {{ $val->company ?? null }}</p>
                             </td>
                             <td>
                                 <a href="{{ viewImage($val->cccd_front) }}" data-fancybox="gallery">

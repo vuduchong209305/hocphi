@@ -40,8 +40,8 @@ return [
             'host' => 'smtp.gmail.com',
             'port' => 587,
             'encryption' => 'ssl',
-            'username' => 'vuduchong112233@gmail.com',
-            'password' => 'ffxb abmy evru xvsn',
+            'username' => 'dragontourvn@gmail.com',
+            'password' => 'sqxu qgzu upmt arak',
             'timeout' => null,
             'local_domain' => env('MAIL_EHLO_DOMAIN'),
         ],
@@ -108,7 +108,7 @@ return [
     */
 
     'from' => [
-        'address' => 'vuduchong112233@gmail.com',
+        'address' => 'dragontourvn@gmail.com',
         'name' => 'DaotaoykhoaCME',
     ],
 

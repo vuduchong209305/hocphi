@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 09, 2026 lúc 11:52 AM
+-- Thời gian đã tạo: Th4 10, 2026 lúc 11:27 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -106,6 +106,38 @@ INSERT INTO `vdh_course` (`id`, `title`, `price`, `sort`, `status`, `created_at`
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `vdh_failed_jobs`
+--
+
+CREATE TABLE `vdh_failed_jobs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `uuid` varchar(255) NOT NULL,
+  `connection` text NOT NULL,
+  `queue` text NOT NULL,
+  `payload` longtext NOT NULL,
+  `exception` longtext NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `vdh_jobs`
+--
+
+CREATE TABLE `vdh_jobs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `queue` varchar(255) NOT NULL,
+  `payload` longtext NOT NULL,
+  `attempts` tinyint(3) UNSIGNED NOT NULL,
+  `reserved_at` int(10) UNSIGNED DEFAULT NULL,
+  `available_at` int(10) UNSIGNED NOT NULL,
+  `created_at` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `vdh_languages`
 --
 
@@ -130,6 +162,53 @@ INSERT INTO `vdh_languages` (`id`, `name`, `lang_class`, `title`, `description`,
 (2, 'en', 'en_es', 'ENG', 'Tiếng Anh', 1, '/assets/images/flag/uk.png', '2020-06-19 16:12:15', '2020-06-19 16:12:17'),
 (3, 'cn', 'cn_CN', 'CN', 'Tiếng Trung', 1, '/assets/images/flag/china.png', '2020-07-05 04:42:05', '2026-01-04 01:54:10'),
 (4, 'kr', 'kr_KR', 'KR', 'Tiếng Hàn', 1, '/assets/images/flag/korea.png', '2026-02-01 12:00:53', '2026-02-01 12:00:54');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `vdh_mail`
+--
+
+CREATE TABLE `vdh_mail` (
+  `id` tinyint(4) NOT NULL,
+  `title` varchar(50) NOT NULL,
+  `key` varchar(50) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=DYNAMIC;
+
+--
+-- Đang đổ dữ liệu cho bảng `vdh_mail`
+--
+
+INSERT INTO `vdh_mail` (`id`, `title`, `key`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Đăng ký khóa học', 'register_course', 1, '2026-04-10 08:55:46', '2026-04-10 09:24:01');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `vdh_mail_detail`
+--
+
+CREATE TABLE `vdh_mail_detail` (
+  `mail_id` tinyint(4) NOT NULL,
+  `lang_id` tinyint(1) NOT NULL,
+  `subject` varchar(200) DEFAULT NULL,
+  `body` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=DYNAMIC;
+
+--
+-- Đang đổ dữ liệu cho bảng `vdh_mail_detail`
+--
+
+INSERT INTO `vdh_mail_detail` (`mail_id`, `lang_id`, `subject`, `body`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Đăng ký khóa học thành công', '<h2 style=\"text-align:center; font-size:24px; font-weight:600; margin-bottom:20px; margin-top:0; color:#009689;\">\r\n    Đăng ký khóa học thành công!\r\n</h2>\r\n\r\n<p style=\"margin-top:0; margin-bottom:10px;\">\r\n    Xin chào <strong>{{ $fullname }}</strong>,\r\n</p>\r\n\r\n<p style=\"margin-top:0; margin-bottom:10px;\">\r\n    Cảm ơn bạn đã đăng ký khóa học tại hệ thống của chúng tôi. Thông tin đăng ký của bạn đã được ghi nhận thành công.\r\n</p>\r\n\r\n<p style=\"margin-top:0; margin-bottom:10px;\">\r\n    Thông tin khóa học:\r\n</p>\r\n\r\n<p style=\"font-size:18px; font-weight:bold; color:#009689; margin: 20px 0; text-align: center;\">\r\n    <span style=\"border:1px dashed #009689; padding:10px 20px; border-radius:4px; display:inline-block;\">\r\n        {{ $course_name }} <br/>\r\n        <span style=\"color:#db398a\">Khai giảng: {{ $start_date }}</span>\r\n    </span>\r\n</p>\r\n\r\n<!-- CTA BUTTON -->\r\n\r\n<div style=\"text-align:center; margin: 20px 0;\">\r\n    <a href=\"{{ url(\'/thanh-toan\') }}\" \r\n       style=\"background: linear-gradient(135deg, #4f46e5, #9333ea); color:#fff; padding:12px 24px; border-radius:6px; text-decoration:none; font-weight:600; display:inline-block;\">\r\n        Thanh toán khóa học\r\n    </a>\r\n</div>\r\n\r\n<h3 style=\"font-size:18px; font-weight:600; margin-bottom:10px; color:#009689;\">Thông tin học viên:</h3>\r\n\r\n<table width=\"100%\" cellpadding=\"8\" cellspacing=\"0\" style=\"border-collapse:collapse; margin-bottom: 20px;\">\r\n    <tbody>\r\n        <tr><td style=\"border:1px solid #ccc;\">Họ tên</td><td style=\"border:1px solid #ccc;\">{{ $fullname }}</td></tr>\r\n        <tr><td style=\"border:1px solid #ccc;\">Số điện thoại</td><td style=\"border:1px solid #ccc;\">{{ $phone }}</td></tr>\r\n        <tr><td style=\"border:1px solid #ccc;\">Email</td><td style=\"border:1px solid #ccc;\">{{ $email }}</td></tr>\r\n        <tr><td style=\"border:1px solid #ccc;\">Giới tính</td><td style=\"border:1px solid #ccc;\">{{ $gender }}</td></tr>\r\n        <tr><td style=\"border:1px solid #ccc;\">Đơn vị công tác</td><td style=\"border:1px solid #ccc;\">{{ $company }}</td></tr>\r\n        <tr><td style=\"border:1px solid #ccc;\">Căn cước công dân</td><td style=\"border:1px solid #ccc;\">{{ $cccd }}</td></tr>\r\n        <tr><td style=\"border:1px solid #ccc;\">Ngày sinh</td><td style=\"border:1px solid #ccc;\">{{ $birthday }}</td></tr>\r\n        <tr><td style=\"border:1px solid #ccc;\">Nơi sinh</td><td style=\"border:1px solid #ccc;\">{{ $birth_place }}</td></tr>\r\n        <tr><td style=\"border:1px solid #ccc;\">Địa chỉ trên CCCD</td><td style=\"border:1px solid #ccc;\">{{ $address}}</td></tr>\r\n        <tr><td style=\"border:1px solid #ccc;\">Địa chỉ nhận CME</td><td style=\"border:1px solid #ccc;\">{{ $address_cme}}</td></tr>\r\n    </tbody>\r\n</table>\r\n\r\n<h3 style=\"font-size:18px; font-weight:600; margin-bottom:10px; color:#009689;\">Thông tin hóa đơn (VAT):</h3>\r\n\r\n<table width=\"100%\" cellpadding=\"8\" cellspacing=\"0\" style=\"border-collapse:collapse; margin-bottom: 20px;\">\r\n    <tbody>\r\n        <tr><td style=\"border:1px solid #ccc;\">Xuất hóa đơn</td><td style=\"border:1px solid #ccc;\">{{ $is_vat ? \'Có\' : \'Không\' }}</td></tr>\r\n        <tr><td style=\"border:1px solid #ccc;\">Mã số thuế</td><td style=\"border:1px solid #ccc;\">{{ $mst ?? null }}</td></tr>\r\n        <tr><td style=\"border:1px solid #ccc;\">Tên đơn vị</td><td style=\"border:1px solid #ccc;\">{{ $mst_name ?? null }}</td></tr>\r\n        <tr><td style=\"border:1px solid #ccc;\">Địa chỉ đơn vị</td><td style=\"border:1px solid #ccc;\">{{ $mst_address ?? null }}</td></tr>\r\n    </tbody>\r\n</table>\r\n\r\n<p style=\"margin-top:0; margin-bottom:10px;\">\r\n    Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất để xác nhận và hướng dẫn các bước tiếp theo.\r\n</p>\r\n\r\n<p style=\"margin-top:20px; margin-bottom:0; font-size:14px; color:#555;\">\r\n    Nếu bạn có bất kỳ câu hỏi nào, vui lòng liên hệ với bộ phận hỗ trợ.\r\n</p>', '2026-04-10 08:55:46', '2026-04-10 09:24:01'),
+(1, 2, 'Đăng ký khóa học thành công', NULL, '2026-04-10 08:55:46', '2026-04-10 09:24:01'),
+(1, 3, 'Đăng ký khóa học thành công', NULL, '2026-04-10 08:55:46', '2026-04-10 09:24:01'),
+(1, 4, 'Đăng ký khóa học thành công', NULL, '2026-04-10 08:55:46', '2026-04-10 09:24:01');
 
 -- --------------------------------------------------------
 
@@ -185,10 +264,12 @@ CREATE TABLE `vdh_orders` (
   `paid_at` timestamp NULL DEFAULT NULL,
   `graduate_year` varchar(4) DEFAULT NULL,
   `graduate_address` varchar(255) DEFAULT NULL,
-  `is_vat` tinyint(1) DEFAULT NULL,
-  `mst` varchar(20) DEFAULT NULL,
   `class_code` varchar(15) DEFAULT NULL,
   `start_date` varchar(15) DEFAULT NULL,
+  `is_vat` tinyint(1) DEFAULT NULL,
+  `mst` varchar(20) DEFAULT NULL,
+  `mst_name` varchar(255) DEFAULT NULL,
+  `mst_address` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -197,8 +278,9 @@ CREATE TABLE `vdh_orders` (
 -- Đang đổ dữ liệu cho bảng `vdh_orders`
 --
 
-INSERT INTO `vdh_orders` (`id`, `code`, `fullname`, `email`, `phone`, `company`, `cccd`, `birthday`, `birthplace`, `course_id`, `cccd_front`, `cccd_back`, `degree`, `signature`, `gender`, `price`, `address`, `address_cme`, `education`, `paid_at`, `graduate_year`, `graduate_address`, `is_vat`, `mst`, `class_code`, `start_date`, `created_at`, `updated_at`) VALUES
-(1, 'B2AZ06KWL8', 'Vũ Đức Hồng', 'vuduchong209305@gmail.com', '0986209305', 'Funky Global', '022093001103', '06-06-1993', 'Quảng Ninh', 1, 'images/2026/04/09/ZmM9MzfnKZY5SrqfHnhD.webp', 'images/2026/04/09/yalrLhqbOgVRGkBfLjWH.webp', 'images/2026/04/09/IqmIwARr6TKh2Qyptzi2.webp', 'images/2026/04/09/WiaRZ0Irc7OnE3UGgdcz.webp', 1, 2200000, 'Chung cư Nhật Tảo 2', 'Chung cư Nhật Tảo 2', 4, NULL, '2015', 'DH Mỏ Địa Chất', NULL, '123123123', 'KSNK-1046', '10-04-2026', '2026-04-09 09:52:06', '2026-04-09 09:52:06');
+INSERT INTO `vdh_orders` (`id`, `code`, `fullname`, `email`, `phone`, `company`, `cccd`, `birthday`, `birthplace`, `course_id`, `cccd_front`, `cccd_back`, `degree`, `signature`, `gender`, `price`, `address`, `address_cme`, `education`, `paid_at`, `graduate_year`, `graduate_address`, `class_code`, `start_date`, `is_vat`, `mst`, `mst_name`, `mst_address`, `created_at`, `updated_at`) VALUES
+(1, '3S4DBZ5Q8N', 'Vũ Đức Hồng', 'vuduchong209305@gmail.com', '0986209305', 'Funky Global', '022093001103', '06-06-1993', 'Cẩm Phả', 1, 'images/2026/04/10/m57JVEHVLpK7SqD7SdSD.webp', 'images/2026/04/10/GYZjA2AgL3yH03PFSDbY.webp', 'images/2026/04/10/P7XrYfR4NjSqsFIJSG2t.webp', 'images/2026/04/10/rNaLFkp1GR8SERBg5LsI.webp', 1, 2200000, 'Chung cư Nhật Tảo 2', 'Chung cư Nhật Tảo 2', 4, NULL, '2015', 'ĐH Mỏ Địa Chất', 'KSNK-1046', '10-04-2026', NULL, NULL, NULL, NULL, '2026-04-10 07:29:16', '2026-04-10 07:29:16'),
+(2, 'WJY3MN4K8F', 'Vũ Đức Hồng', 'vuduchong209305@gmail.com', '0934338855', 'Global Expo', '022093001103', '06-06-1993', 'Cẩm Phả', 1, 'images/2026/04/10/LiBv1Ba4oKXzkcqlH8OQ.webp', 'images/2026/04/10/CtEjOumc2oID13uLMG88.webp', 'images/2026/04/10/yIqlCQHTZKlyfMRhyUWd.webp', 'images/2026/04/10/nEkPyexSct8fXuawQq2m.webp', 1, 2200000, 'Chung Cư Nhật Tảo 2', 'Chung Cư Nhật Tảo 2', 4, NULL, '2015', 'Hà Nội', 'KSNK-1146', '11-04-2026', 1, '5702177494', 'CÔNG TY TNHH DRAGON AQT TRAVEL', 'Số nhà 226, đường Thành Công, Tổ 3, Khu 7, Phường Cao Xanh, Quảng Ninh', '2026-04-10 07:34:48', '2026-04-10 08:17:23');
 
 -- --------------------------------------------------------
 
@@ -321,10 +403,36 @@ ALTER TABLE `vdh_course`
   ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
+-- Chỉ mục cho bảng `vdh_failed_jobs`
+--
+ALTER TABLE `vdh_failed_jobs`
+  ADD PRIMARY KEY (`id`) USING BTREE,
+  ADD UNIQUE KEY `vdh_failed_jobs_uuid_unique` (`uuid`) USING BTREE;
+
+--
+-- Chỉ mục cho bảng `vdh_jobs`
+--
+ALTER TABLE `vdh_jobs`
+  ADD PRIMARY KEY (`id`) USING BTREE,
+  ADD KEY `vdh_jobs_queue_index` (`queue`) USING BTREE;
+
+--
 -- Chỉ mục cho bảng `vdh_languages`
 --
 ALTER TABLE `vdh_languages`
   ADD PRIMARY KEY (`id`) USING BTREE;
+
+--
+-- Chỉ mục cho bảng `vdh_mail`
+--
+ALTER TABLE `vdh_mail`
+  ADD PRIMARY KEY (`id`) USING BTREE;
+
+--
+-- Chỉ mục cho bảng `vdh_mail_detail`
+--
+ALTER TABLE `vdh_mail_detail`
+  ADD PRIMARY KEY (`mail_id`,`lang_id`) USING BTREE;
 
 --
 -- Chỉ mục cho bảng `vdh_opening`
@@ -376,16 +484,34 @@ ALTER TABLE `vdh_course`
   MODIFY `id` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
+-- AUTO_INCREMENT cho bảng `vdh_failed_jobs`
+--
+ALTER TABLE `vdh_failed_jobs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `vdh_jobs`
+--
+ALTER TABLE `vdh_jobs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT cho bảng `vdh_languages`
 --
 ALTER TABLE `vdh_languages`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT cho bảng `vdh_mail`
+--
+ALTER TABLE `vdh_mail`
+  MODIFY `id` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT cho bảng `vdh_orders`
 --
 ALTER TABLE `vdh_orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `vdh_roles`

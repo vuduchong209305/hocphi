@@ -25,7 +25,14 @@ class Order extends Model
                         ->orWhere('email', 'LIKE', "%$q%")
                         ->orWhere('phone', 'LIKE', "%$q%")
                         ->orWhere('cccd', 'LIKE', "%$q%")
-                        ->orWhere('birthday', 'LIKE', "%$q%");
+                        ->orWhere('birthday', 'LIKE', "%$q%")
+                        ->orWhere('class_code', 'LIKE', "%$q%")
+                        ->orWhere('start_date', 'LIKE', "%$q%")
+                        ->orWhere('mst', 'LIKE', "%$q%")
+                        ->orWhere('mst_name', 'LIKE', "%$q%")
+                        ->orWhere('mst_address', 'LIKE', "%$q%")
+                        ->orWhere('graduate_year', 'LIKE', "%$q%")
+                        ->orWhere('graduate_address', 'LIKE', "%$q%");
         }
     }
 
