@@ -89,9 +89,12 @@ class HomeController extends BaseController
             $order->mst_address = $request->mst_address;
         }
 
-        $order->save();
+        if($order->save()) {
+            \Mail::to($order->email)->cc(mail_cc())->queue(new \App\Mail\RegisterCourse($order));
+            return sendResponse($order, 'Đăng ký thành công');
+        }
 
-        return sendResponse($order, 'Đăng ký thành công');
+        return sendError('Có lỗi xảy ra');
     }
 
     public function purchase(Request $request)
