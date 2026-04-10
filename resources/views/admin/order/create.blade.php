@@ -46,7 +46,7 @@
                 </div>
                 <div class="col-md-4">
                     <label class="form-label" for="birthday">Năm sinh</label>
-                    <input type="text" class="form-control" id="birthday" name="birthday" placeholder="Năm sinh" autofocus="" value="{{ !empty($data->birthday) ? $data->birthday : old('birthday') }}">
+                    <input type="text" class="form-control flatpickr" id="birthday" name="birthday" placeholder="Năm sinh" autofocus="" value="{{ !empty($data->birthday) ? $data->birthday : old('birthday') }}">
                 </div>
                 <div class="col-md-4">
                     <label class="form-label" for="birthplace">Nơi sinh</label>
@@ -84,17 +84,6 @@
                     <input type="text" class="form-control" id="mst" name="mst" placeholder="Mã số thuế (nếu xuất hóa đơn)" autofocus="" value="{{ !empty($data->mst) ? $data->mst : old('mst') }}">
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label" for="paid_at">Trạng thái <span class="badge bg-success-subtle text-success fw-semibold rounded-pill">{{ $data->paid_at }}</span></label>
-                    <select name="paid_at" id="paid_at" class="form-control">
-                        <option value="1" {{ isset($data->paid_at) && $data->paid_at == 1 ? 'selected' : null }}>Đã thanh toán</option>
-                        <option value="" {{ is_null($data->paid_at) ? 'selected' : null }}>Chưa thanh toán</option>
-                    </select>
-                </div>
-                <div class="col-md-4">
-                    <label class="form-label" for="price">Thanh toán</label>
-                    <input type="text" class="form-control" id="price" name="price" placeholder="Thanh toán" autofocus="" value="{{ !empty($data->price) ? $data->price : old('price') }}">
-                </div>
-                <div class="col-md-4">
                     <label class="form-label" for="class_code">Mã lớp</label>
                     <input type="text" class="form-control" id="class_code" name="class_code" placeholder="Mã lớp" autofocus="" value="{{ !empty($data->class_code) ? $data->class_code : old('class_code') }}">
                 </div>
@@ -102,15 +91,48 @@
                     <label class="form-label" for="start_date">Ngày khai giảng</label>
                     <input type="text" class="form-control flatpickr" id="start_date" name="start_date" placeholder="Mã lớp" autofocus="" value="{{ !empty($data->start_date) ? $data->start_date : old('start_date') }}">
                 </div>
+                <div class="col-md-4">
+                    <label class="form-label" for="price">Thanh toán</label>
+                    <input type="text" class="form-control" id="price" name="price" placeholder="Thanh toán" autofocus="" value="{{ !empty($data->price) ? $data->price : old('price') }}">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label" for="paid_at">Trạng thái <span class="badge bg-success-subtle text-success fw-semibold rounded-pill">{{ $data->paid_at }}</span></label>
+                    <select name="paid_at" id="paid_at" class="form-control">
+                        <option value="1" {{ isset($data->paid_at) && $data->paid_at == 1 ? 'selected' : null }}>Đã thanh toán</option>
+                        <option value="" {{ is_null($data->paid_at) ? 'selected' : null }}>Chưa thanh toán</option>
+                    </select>
+                </div>
             </div>
 
             <hr>
 
             <div class="row">
-            	<div class="col-md-6">
-	            	<p>Khóa học: <b>{{ $data->course->title ?? null }}</b></p>
-	            	<p>Mã thanh toán: <b>{{ $data->code ?? null }}</b></p>
-	            </div>
+                <div class="col-md-6">
+                    <p>Khóa học: <b>{{ $data->course->title ?? null }}</b></p>
+                    <p>Mã thanh toán: <b>{{ $data->code ?? null }}</b></p>
+
+                    <p>Yêu cầu xuất hóa đơn: <b>{{ !empty($data->is_vat) ? 'Có' : 'Không' }}</b></p>
+                    @if(!empty($data->is_vat))
+                    <ul>
+                        <li>
+                            Mã số thuế: <a href="javascript:;" class="live-edit" data-type="textarea" id="mst" data-name="mst" data-pk="{{ $data->id ?? null }}" data-url="{{ route('order.update') }}" data-title="Mã số thuế">{{ $data->mst ?? null }}</a>
+                        </li>
+                        <li>
+                            Tên đơn vị: <a href="javascript:;" class="live-edit" data-type="textarea" id="mst_name" data-name="mst_name" data-pk="{{ $data->id ?? null }}" data-url="{{ route('order.update') }}" data-title="Tên đơn vị">{{ $data->mst_name ?? null }}</a>
+                        </li>
+                        <li>
+                            Địa chỉ đơn vị: <a href="javascript:;" class="live-edit" data-type="textarea" id="mst_address" data-name="mst_address" data-pk="{{ $data->id ?? null }}" data-url="{{ route('order.update') }}" data-title="Địa chỉ đơn vị">{{ $data->mst_address ?? null }}</a>
+                        </li>
+                    </ul>
+                    @endif
+
+                    <button class="btn btn-sm btn-outline-secondary" id="send" type="button">Gửi mail xác nhận</button>
+                </div>
+            	<div class="col-md-6 text-end">
+                    <a href="https://api.vietqr.io/image/{{ HTMLHelper::getOption('bank_code') }}-{{ HTMLHelper::getOption('account_number') }}-Olvjj43.jpg?accountName={{ HTMLHelper::getOption('account_owner') }}&amount={{ !empty($data->price) ? $data->price : 0 }}&addInfo=CME {{ $data->code ?? null }} TT" data-fancybox>
+                        <img src="https://api.vietqr.io/image/{{ HTMLHelper::getOption('bank_code') }}-{{ HTMLHelper::getOption('account_number') }}-Olvjj43.jpg?accountName={{ HTMLHelper::getOption('account_owner') }}&amount={{ !empty($data->price) ? $data->price : 0 }}&addInfo=CME {{ $data->code ?? null }} TT" alt="Mã thanh toán" width="200px">
+                    </a>
+                </div>
             </div>
             
             <hr>
@@ -152,4 +174,30 @@
 
 </div>
 
+@push('scripts')
+    <script>
+        $('#send').click(function(){
+            if(!confirm('Gửi mail xác nhận')) return
+
+            $.ajax({
+                url: '{{ route('order.mail') }}',
+                method: 'POST',
+                data: {
+                    id: '{{ request('id') }}'
+                },
+                success(res) {
+                    if(res.status) {
+                        notify('Thành công', res.message)
+                    } else {
+                        notify('Thất bại', 'Có lỗi xảy ra', 'error')
+                    }
+                },
+                error(err) {
+                    console.log(err)
+                    notify('Có lỗi xảy ra', err, 'error')
+                }
+            })
+        });
+    </script>
+@endpush
 @endsection

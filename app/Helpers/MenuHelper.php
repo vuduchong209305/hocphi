@@ -122,6 +122,33 @@ class MenuHelper {
 		return $menu;
 	}
 
+	private static function mail_menu($menu = []) {
+
+		$msub = array();
+
+		if (RoleHelper::checkRole('mail.index')) {
+
+			$msub[] = array(
+				'url'    => route('mail.index'),
+				'title'  => 'Danh sách',
+				'active' => 'hadmin/mail/index',
+			);
+		}
+		
+		if (count($msub) > 0) {
+
+			$menu[] = array(
+				'title'   => 'Mail',
+				'url'     => route('mail.index'),
+				'icon'    => 'ti-mail',
+				'active'  => 'hadmin/mail/*',
+				'submenu' => $msub
+			);
+		}
+
+		return $menu;
+	}
+
 	private static function setting_menu($menu = [])
 	{
 		$msub = array();
@@ -156,6 +183,7 @@ class MenuHelper {
 		$menu = self::admin_menu($menu);
 		$menu = self::course_menu($menu);
 		$menu = self::order_menu($menu);
+		$menu = self::mail_menu($menu);
 		$menu = self::setting_menu($menu);
 		
 		return $menu;

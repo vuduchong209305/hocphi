@@ -67,6 +67,10 @@
 </head>
 <body>
 
+    <div id="globalLoader" class="fixed inset-0 bg-white/60 backdrop-blur-sm flex items-center justify-center z-[9999] hidden">
+        <div class="w-12 h-12 border-4 border-indigo-200 border-t-indigo-600 rounded-full animate-spin"></div>
+    </div>
+
     <div class="text-white w-full text-center text-sm font-medium py-2 bg-gradient-to-r from-violet-500 via-[#9938CA] to-[#E0724A]">
         <p>Đào tạo y khoa CME, <a href="javascript:;" class="underline underline-offset-2">Tham gia ngay!</a></p>
     </div>
@@ -162,6 +166,7 @@
     <script src="https://cdn.jsdelivr.net/npm/tabler-icons@1.35.0/icons-react/dist/index.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('index/js/script.js') }}"></script>
 
     <script>

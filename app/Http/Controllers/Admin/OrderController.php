@@ -53,4 +53,18 @@ class OrderController extends Controller
         
         return back()->withErrors('Đã có lỗi xảy ra, vui lòng thử lại');
     }
+
+    public function update(Request $request)
+    {
+        Order::where(['id' => $request->pk])->update([$request->name => $request->value]);
+        return sendResponse($request->pk, 'Cập nhật thành công');
+    }
+
+    public function mail(Request $request)
+    {
+        $order = Order::findOrFail($request->id);
+        \Mail::to($order->email)->cc(mail_cc())->queue(new \App\Mail\RegisterCourse($order));
+
+        return sendResponse($order, 'Gửi mail thành công');
+    }
 }

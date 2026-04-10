@@ -44,6 +44,18 @@ $(document).ready(function(){
         });
     }
     
+    $.fn.editable.defaults.ajaxOptions = {
+        type: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    };
+
+    $('.live-edit').editable({
+        emptytext: 'Chưa có'
+    });
+
+    $.fn.editable.defaults.mode = 'inline';
 });
 
 function formatExhibition(option) {

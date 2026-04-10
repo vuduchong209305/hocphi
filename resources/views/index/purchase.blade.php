@@ -10,7 +10,7 @@
         <div class="max-w-7xl mx-auto px-3 md:gap-6 gap-2 flex flex-col items-center justify-center w-full">
 
         	<form id="searchForm" class="flex items-center border gap-2 bg-white border-gray-500/30 h-12 max-w-md w-full rounded-full overflow-hidden">
-			    <input type="text" name="phone" id="phone" placeholder="Số điện thoại của bạn" class="w-full h-full pl-6 outline-none text-sm placeholder-gray-500" required>
+			    <input type="text" name="phone" id="phone" placeholder="Số điện thoại của bạn" class="w-full h-full pl-6 outline-none text-sm placeholder-gray-500" autofocus required>
 			    <button type="submit" class="bg-indigo-500 active:scale-95 transition w-56 h-10 rounded-full text-sm text-white mr-1 flex items-center justify-center gap-1">
 			        Tìm kiếm <i class="ti ti-arrow-narrow-right"></i>
 			    </button>
@@ -62,13 +62,16 @@
 						        <div class="bg-white border border-gray-200 rounded-2xl p-4 shadow-sm hover:shadow-md transition">
 
 						            <!-- Header -->
-						            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-3">
-						                <h3 class="font-semibold text-gray-800 text-base md:text-lg line-clamp-1">
-						                    ${order?.course}
+						            <div class="mb-5">
+						                <h3 class="text-gray-800">
+						                    <b>${order?.course}</b>
 						                </h3>
-						                <span class="text-xs md:text-sm text-indigo-600 font-medium">
-						                    ${order?.paid_at}
-						                </span>
+						    			<h4 class="text-gray-800 text-sm">
+						    				Mã lớp: <b>${order?.class_code}</b>
+						    			</h4>
+						    			<h5 class="text-gray-800 text-sm">
+						    				Khai giảng: <b>${order?.start_date}</b>
+						    			</h5>
 						            </div>
 
 						            <!-- Info Grid -->
@@ -76,6 +79,9 @@
 						                <div>
 						                    <span class="text-gray-600">Mã thanh toán:</span>
 						                    <span class="font-medium text-gray-800">${order?.code}</span>
+						    				<p class="text-xs md:text-sm font-medium ${order?.paid_at != null ? 'text-green-600' : 'text-red-600'}">
+							                    ${order?.paid_at_text}
+							                </p>
 						                </div>
 						                <div>
 						                    <span class="text-gray-600">Ngày đăng ký:</span>
@@ -88,14 +94,14 @@
 
 						            <!-- Footer -->
 						            <div class="flex items-center justify-between">
-						                <span class="text-xs text-gray-600">Tổng thanh toán</span>
-						                <span class="text-lg font-bold text-indigo-600">
+						                <span class="text-md text-gray-700">Tổng thanh toán</span>
+						                <span class="text-lg font-bold text-green-600">
 						                    ${order?.price_format} VNĐ
 						                </span>
 						            </div>
 
-						    		<div class="flex justify-center ${order?.paid_at == 'Đã thanh toán' ? 'hidden' : ''}">
-						    			<img src="https://api.vietqr.io/image/${order?.bank_code}-${order?.account_number}-Olvjj43.jpg?accountName=${order?.account_owner}&amount=${order?.price}&addInfo=CME%20${order?.code}%20TT" width="400px">
+						    		<div class="flex justify-center ${order?.paid_at != null ? 'hidden' : ''}">
+						    			<img src="https://api.vietqr.io/image/${order?.bank_code}-${order?.account_number}-Olvjj43.jpg?accountName=${order?.account_owner}&amount=${order?.price}&addInfo=CME ${order?.code} TT" width="400px">
 						    		</div>
 						    		
 						        </div>
@@ -116,7 +122,7 @@
 		    });
 
 		});
-		</script>
+	</script>
 @endpush
 
 @endsection

@@ -14,7 +14,7 @@
                     <label class="block font-semibold text-gray-900 mb-1">
                         Khoá học anh/chị cần đăng ký <span class="text-red-500 italic text-sm">(Bắt buộc)</span>
                     </label>
-                    <select name="course_id" id="course_id" class="tomSelect w-full focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 text-sm" placeholder="Chọn khóa học">
+                    <select name="course_id" id="course_id" class="tomSelect w-full focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 text-sm" placeholder="Chọn khóa học" required>
                         <option value="">Lựa chọn</option>
                         @if(!empty($course) && $course->count() > 0)
                             @foreach($course as $item)
@@ -26,7 +26,7 @@
 
                 <div id="opening-list" class="mb-10"></div>
 
-                <div class="grid md:grid-cols-2 md:gap-4 grid-cols-1 gap-3 mb-10 border border-dashed rounded p-3">
+                <div class="grid md:grid-cols-2 md:gap-4 grid-cols-1 gap-3 mb-5 border border-dashed border-gray-400 rounded p-3">
                     <div>
                         <label class="block font-semibold text-gray-900 mb-1" for="fullname">Họ tên <span class="text-red-500 italic text-sm">(Bắt buộc)</span></label>
                         <input type="text" placeholder="Nguyễn Văn A" name="fullname" id="fullname" class="w-full px-3 py-3 border border-gray-300 rounded-lg text-sm outline-none focus:border-indigo-500 transition-colors" required/>
@@ -97,10 +97,29 @@
                         <label class="block font-semibold text-gray-900 mb-1" for="graduate_address">Nơi tốt nghiệp <span class="text-red-500 italic text-sm">(Bắt buộc)</span></label>
                         <input type="text" placeholder="Nơi tốt nghiệp" name="graduate_address" id="graduate_address" class="w-full px-3 py-3 border border-gray-300 rounded-lg text-sm outline-none focus:border-indigo-500 transition-colors" required />
                     </div>
+                </div>
+
+                <div class="flex items-center gap-2 mb-3">
+                    <input type="checkbox" id="is_vat" name="is_vat" class="w-5 h-5 cursor-pointer accent-indigo-500 rounded-[5px] text-gray-300" />
+                    <label class="text-sm text-gray-500 cursor-pointer" for="is_vat">
+                        Yêu cầu xuất hóa đơn
+                    </label>
+                </div>
+
+                <div id="vat-form" class="hidden grid md:grid-cols-2 md:gap-4 grid-cols-1 gap-3 mb-10 border border-dashed border-gray-400 rounded p-3 transition-all duration-300 ease-in-out">
+                    <div>
+                        <label class="block font-semibold text-gray-900 mb-1" for="mst">Mã số thuế</label>
+                        <input type="text" placeholder="Mã số thuế" name="mst" id="mst" class="w-full px-3 py-3 border border-gray-300 rounded-lg text-sm outline-none focus:border-indigo-500 transition-colors" />
+                    </div>
 
                     <div>
-                        <label class="block font-semibold text-gray-900 mb-1" for="mst">Mã số thuế (nếu xuất hóa đơn)</label>
-                        <input type="text" placeholder="Mã số thuế (nếu xuất hóa đơn)" name="mst" id="mst" class="w-full px-3 py-3 border border-gray-300 rounded-lg text-sm outline-none focus:border-indigo-500 transition-colors" />
+                        <label class="block font-semibold text-gray-900 mb-1" for="mst_name">Tên đơn vị</label>
+                        <input type="text" placeholder="Tên đơn vị" name="mst_name" id="mst_name" class="w-full px-3 py-3 border border-gray-300 rounded-lg text-sm outline-none focus:border-indigo-500 transition-colors" />
+                    </div>
+
+                    <div>
+                        <label class="block font-semibold text-gray-900 mb-1" for="mst_address">Địa chỉ đơn vị</label>
+                        <input type="text" placeholder="Địa chỉ đơn vị" name="mst_address" id="mst_address" class="w-full px-3 py-3 border border-gray-300 rounded-lg text-sm outline-none focus:border-indigo-500 transition-colors" />
                     </div>
                 </div>
 
@@ -293,6 +312,11 @@
                     birthday = $('#birthday').val().trim(),
                     course_id = $('#course_id :selected').val()
 
+                if(course_id == null || course_id == '') {
+                    showToast('error', 'Vui lòng chọn', 'Khóa học đăng ký')
+                    return
+                }
+
                 if(fullname == null || fullname == '') {
                     showToast('error', 'Vui lòng nhập', 'Họ tên không để trống')
                     return
@@ -323,11 +347,6 @@
                     return
                 }
 
-                if(course_id == null || course_id == '') {
-                    showToast('error', 'Vui lòng chọn', 'Khóa học đăng ký')
-                    return
-                }
-
                 form.find('.input-file').each(function () {
                     if (!this.files.length) {
                         $(this).closest('.upload-box').addClass('border-red-500');
@@ -336,7 +355,7 @@
                     }
                 });
 
-                if (!form.find('input[type="checkbox"]').is(':checked')) {
+                if (!form.find('#checkbox').is(':checked')) {
                     showToast('error', 'Vui lòng nhập', 'Bạn phải đồng ý với điều khoản')
                     return
                 }
@@ -344,39 +363,53 @@
                 // ===== SUBMIT AJAX =====
                 let formData = new FormData(this);
 
-                $.ajax({
-                    url: "{{ route('index.register') }}",
-                    method: "POST",
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    beforeSend: function () {
-                        form.find('button[type="submit"]').prop('disabled', true).text('Đang gửi...');
-                    },
-                    success: function (res) {
-                        if(res.status) {
-                            showToast('success', 'Thành công', res.message)
-                            form[0].reset();
+                Swal.fire({
+                    title: "Xác nhận thông tin",
+                    text: "Bạn chắc chắn với tất cả các thông tin là chính xác",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Đăng ký",
+                    cancelButtonText: "Đóng"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: "{{ route('index.register') }}",
+                            method: "POST",
+                            data: formData,
+                            processData: false,
+                            contentType: false,
+                            beforeSend: function () {
+                                form.find('button[type="submit"]').prop('disabled', true).text('Đang gửi...');
+                            },
+                            success: function (res) {
+                                if(res.status) {
+                                    Swal.fire({
+                                        title: "Thành công",
+                                        text: res.message,
+                                        icon: "success"
+                                    });
 
-                            $('.preview').addClass('hidden');
-                            $('.placeholder').removeClass('hidden');
-                        }
-                    },
-                    error: function (xhr) {
-                        showToast('error', 'Có lỗi xảy ra', 'Vui lòng thử lại')
-                    },
-                    complete: function () {
-                        form.find('button[type="submit"]').prop('disabled', false).text('Đăng ký');
-                    }
+                                    form[0].reset();
+
+                                    $('.preview').addClass('hidden');
+                                    $('.placeholder').removeClass('hidden');
+                                } else {
+                                    showToast('error', 'Không hợp lệ', res.message)
+                                }
+                            },
+                            error: function (xhr) {
+                                showToast('error', 'Có lỗi xảy ra', 'Vui lòng thử lại')
+                            },
+                            complete: function () {
+                                form.find('button[type="submit"]').prop('disabled', false).text('Đăng ký');
+                            }
+                        });
+                    }  
                 });
 
             });
-
-            // ===== FUNCTION HIỂN THỊ LỖI =====
-            function showError(input, message) {
-                input.addClass('border-red-500');
-                input.after('<p class="text-red-500 text-xs mt-1 error-text">' + message + '</p>');
-            }
 
         });
     </script>
@@ -477,6 +510,23 @@
                         $('#opening-list').html('<p class="text-red-500">Có lỗi xảy ra</p>');
                     }
                 });
+            });
+
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+
+            $('#is_vat').on('change', function () {
+                let isChecked = $(this).is(':checked');
+
+                $('#vat-form').toggleClass('hidden', !isChecked);
+                $('#vat-form').find('input').prop('disabled', !isChecked);
+
+                if (!isChecked) {
+                    $('#vat-form').find('input').val('');
+                }
             });
 
         });

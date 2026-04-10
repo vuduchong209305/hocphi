@@ -3,7 +3,15 @@ $(document).ready(function(){
 	$.ajaxSetup({
 	    headers: {
 	        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-	    }
+	    },
+
+        beforeSend() {
+            showLoader();
+        },
+
+        complete() {
+            hideLoader();
+        }
 	});
 })
 
@@ -49,4 +57,13 @@ function getCookie(name) {
 
 function validateEmail(email) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function showLoader() {
+    document.getElementById("globalLoader").classList.remove("hidden");
+}
+
+
+function hideLoader(){
+    document.getElementById("globalLoader").classList.add("hidden");
 }

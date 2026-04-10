@@ -15,7 +15,8 @@
 
         <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" id="app-style" />
         <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/3.35.0/tabler-icons.min.css" rel="stylesheet">
+        <link href="{{ asset('assets/css/fontawesome.css') }}" rel="stylesheet" />
+        <link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" rel="stylesheet">
         <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('assets/css/select2-bootstrap-5-theme.min.css') }}" rel="stylesheet" type="text/css" />
 
@@ -392,24 +393,16 @@
         <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
         <script src="{{ asset('assets/js/waves.min.js') }}"></script>
         <script src="{{ asset('assets/js/simplebar.min.js') }}"></script>
-        <script src="{{ asset('assets/js/feather.min.js') }}"></script>
-        <script src="{{ asset('assets/js/select2.min.js') }}"></script>
-        
-        <script src="{{ asset('assets/js/jquery.dataTables.min.js') }}"></script>
-        <script src="{{ asset('assets/js/dataTables.bootstrap5.min.js') }}"></script>
+        <script src="{{ asset('assets/js/bootstrap-editable.min.js') }}"></script>
         <script src="{{ asset('assets/js/Sortable.min.js') }}"></script>
-        <script src="{{ asset('assets/js/ckeditor/ckeditor.js') }}"></script>
-        <script src="{{ asset('assets/js/ckfinder/ckfinder.js') }}"></script>
         <script src="{{ asset('assets/js/fancybox.min.js') }}"></script>
         <script src="{{ asset('assets/js/simple-notify.min.js') }}"></script>
         <script src="{{ asset('assets/js/flatpickr.js')}}"></script>
         <script src="{{ asset('assets/js/flatpickr-vn.js')}}"></script>
-        <script src="{{ asset('assets/js/simple.money.format.js')}}"></script>v
-        <script src="{{ asset('assets/js/jquery.multi-select.js') }}"></script>
-        <script src="{{ asset('assets/js/jquery.quicksearch.min.js') }}"></script>
+        <script src="{{ asset('assets/js/simple.money.format.js')}}"></script>
+
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script src="{{ asset('assets/js/konva.min.js') }}"></script>
-        <script src="{{ asset('assets/js/app.js') }}"></script>
+
         <script src="{{ asset('assets/js/script.js') }}"></script>
 
         @stack('scripts')

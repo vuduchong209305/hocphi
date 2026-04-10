@@ -71,30 +71,29 @@ Route::group(['prefix' => 'hadmin', 'namespace' => 'Admin'], function() {
             Route::get('create', ['as' => 'create', 'uses' => 'OrderController@create']);
             Route::post('store', ['as' => 'store', 'uses' => 'OrderController@store']);
             Route::put('store', ['as' => 'update', 'uses' => 'OrderController@store']);
+            Route::post('update', ['as' => 'update', 'uses' => 'OrderController@update']);
+            Route::post('mail', ['as' => 'mail', 'uses' => 'OrderController@mail']);
+        });
+
+        /* Mail */
+        Route::group(['prefix' => 'mail', 'as' => 'mail.'], function() {
+            Route::get('index', ['as' => 'index', 'uses' => 'MailController@index']);
+            Route::get('create', ['as' => 'create', 'uses' => 'MailController@create']);
+            Route::post('store', ['as' => 'store', 'uses' => 'MailController@store']);
+            Route::put('store', ['as' => 'update', 'uses' => 'MailController@store']);
+            Route::get('delete', ['as' => 'delete', 'uses' => 'MailController@delete']);
+            Route::get('preview', ['as' => 'preview', 'uses' => 'MailController@preview']);
+
+            Route::get('send', ['as' => 'send', 'uses' => 'MailController@send']);
+            Route::post('send', ['as' => 'send', 'uses' => 'MailController@send']);
+            Route::get('activity', ['as' => 'activity', 'uses' => 'MailController@activity']);
+            Route::get('detail', ['as' => 'detail', 'uses' => 'MailController@detail']);
         });
 
         /* Setting */
         Route::group(['prefix' => 'setting', 'as' => 'setting.'], function() {
             Route::get('index', ['as' => 'index', 'uses' => 'SettingController@index']);
             Route::post('store', ['as' => 'store', 'uses' => 'SettingController@store']);
-
-            /* Lang */
-            Route::group(['prefix' => 'lang', 'as' => 'lang.'], function() {
-                Route::get('index', ['as' => 'index', 'uses' => 'LangController@index']);
-                Route::post('store', ['as' => 'store', 'uses' => 'LangController@store']);
-                Route::put('store', ['as' => 'update', 'uses' => 'LangController@store']);
-                Route::get('delete', ['as' => 'delete', 'uses' => 'LangController@delete']);
-            });
-            
-            /* Logo */
-            Route::group(['prefix' => 'logo', 'as' => 'logo.'], function() {
-                Route::get('index', ['as' => 'index', 'uses' => 'LogoController@index']);
-                Route::get('create', ['as' => 'create', 'uses' => 'LogoController@create']);
-                Route::post('store', ['as' => 'store', 'uses' => 'LogoController@store']);
-                Route::put('store', ['as' => 'update', 'uses' => 'LogoController@store']);
-                Route::get('delete', ['as' => 'delete', 'uses' => 'LogoController@delete']);
-            });
-
         });
 
     });

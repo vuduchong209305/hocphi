@@ -50,9 +50,7 @@ class HomeController extends BaseController
 
             [$code, $start_date] = explode('|', $request->opening_select);
 
-            $opening = Opening::where('code', $code)
-                                ->where('start_date', $start_date)
-                                ->first();
+            $opening = Opening::where('code', $code)->where('start_date', $start_date)->first();
 
             if ($opening) {
                 $order->class_code = $opening->code;
@@ -77,12 +75,20 @@ class HomeController extends BaseController
         $order->education = $request->education;
         $order->graduate_year = $request->graduate_year;
         $order->graduate_address = $request->graduate_address;
-        $order->mst = $request->mst;
+        
 
         $order->cccd_front = HTMLHelper::uploadImage('cccd_front');
         $order->cccd_back = HTMLHelper::uploadImage('cccd_back');
         $order->degree = HTMLHelper::uploadImage('degree');
         $order->signature = HTMLHelper::uploadImage('signature');
+
+        if ($request->boolean('is_vat')) {
+            $order->is_vat = $request->boolean('is_vat');
+            $order->mst = $request->mst;
+            $order->mst_name = $request->mst_name;
+            $order->mst_address = $request->mst_address;
+        }
+
         $order->save();
 
         return sendResponse($order, 'Đăng ký thành công');
@@ -101,8 +107,11 @@ class HomeController extends BaseController
         $data = $orders->map(function ($item) {
             return [
                 'code' => $item->code,
-                'paid_at' => $item->paid_at ? "Đã thanh toán: {$item->paid_at}" : 'Chưa thanh toán',
-                'course' => $item->course->title ?? '',
+                'paid_at' => $item->paid_at,
+                'paid_at_text' => $item->paid_at ? "Đã thanh toán: {$item->paid_at}" : 'Chưa thanh toán',
+                'course' => $item->course->title ?? null,
+                'class_code' => $item->class_code ?? null,
+                'start_date' => $item->start_date ?? null,
                 'price' => $item->price,
                 'price_format' => vdh_format_money($item->price),
                 'bank_code' => HTMLHelper::getOption('bank_code'),
@@ -128,6 +137,11 @@ class HomeController extends BaseController
         });
 
         return sendResponse($data);
+    }
+
+    public function mst(Request $request)
+    {
+
     }
 
     public function page404()

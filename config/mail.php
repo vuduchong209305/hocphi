@@ -45,18 +45,6 @@ return [
             'timeout' => null,
             'local_domain' => env('MAIL_EHLO_DOMAIN'),
         ],
-        
-        'elasticemail' => [
-            'transport' => 'smtp',
-            'url' => env('MAIL_URL'),
-            'host' => 'smtp.elasticemail.com',
-            'port' => 2525,
-            'encryption' => 'tls',
-            'username' => 'support@expoplus.vn',
-            'password' => '9562A66180CF2E9BCA80BD2B043C1C3102B2',
-            'timeout' => null,
-            'local_domain' => env('MAIL_EHLO_DOMAIN'),
-        ],
 
         'ses' => [
             'transport' => 'ses',
@@ -121,7 +109,7 @@ return [
 
     'from' => [
         'address' => 'vuduchong112233@gmail.com',
-        'name' => 'ExpoPlus.vn',
+        'name' => 'DaotaoykhoaCME',
     ],
 
     /*
