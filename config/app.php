@@ -168,6 +168,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -187,6 +188,7 @@ return [
         'MenuOrganizerHelper' => App\Helpers\MenuOrganizerHelper::class,
         'HTMLHelper' => App\Helpers\HTMLHelper::class,
         'LangHelper' => App\Helpers\LangHelper::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ])->toArray(),
 
 ];

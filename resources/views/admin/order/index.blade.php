@@ -44,6 +44,12 @@
 
 <div class="card">
 
+    <div class="card-header">
+        <div class="d-flex flex-row justify-content-between align-items-center">
+            <a class="btn btn-sm btn-success export" href="javascript:;">Xuất file Excel&nbsp;&nbsp;<i class="ti ti-download"></i></a>
+        </div>
+    </div>
+
     <div class="card-body">
 
         {{ !empty($orders) ? vdh_paginate($orders, $orders->total()) : null }}
@@ -114,5 +120,42 @@
         {{ !empty($orders) ? vdh_paginate($orders, $orders->total()) : null }}
     </div>
 </div>
+
+@push('scripts')
+    <script>
+        $('.export').click(function(){
+            Swal.fire({
+                title: `Xuất file Excel`,
+                text: `Danh sách đăng ký => Excel`,
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Xuất file',
+                cancelButtonText: 'Đóng',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: '{{ route('order.export') }}',
+                        method: 'post',
+                        data: {
+                            course_id: '{{ request('course_id') }}',
+                            paid_at: '{{ request('paid_at') }}',
+                            q: '{{ request('q') }}'
+                        },
+                        success(res) {
+                            if(res.status) {
+                                window.open(res.data);
+                            }
+                        },
+                        error(err) {
+                            console.log(err)
+                        }
+                    })
+                }
+            });
+        });
+    </script>
+@endpush
 
 @endsection

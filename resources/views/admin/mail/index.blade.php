@@ -63,7 +63,7 @@
                                     <p style="margin:5px 0;">-----------------------------------------</p>
                                     <p style="margin-top:0;margin-bottom:5px;">
                                         <small>© {{ date('Y') }} 
-                                            <a href="https://expoplus.vn" style="color:#009689;text-decoration:none;">Expoplus.vn</a>. All rights reserved.
+                                            <a href="https://daotaoykhoa.com" style="color:#009689;text-decoration:none;">Daotaoykhoa.com</a>. All rights reserved.
                                         </small>
                                     </p>
                                 </div>

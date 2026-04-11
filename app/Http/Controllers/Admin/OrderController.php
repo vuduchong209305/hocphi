@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Course;
+use App\Exports\OrdersExport;
+use Excel, Storage;
 
 class OrderController extends Controller
 {
@@ -66,5 +68,29 @@ class OrderController extends Controller
         \Mail::to($order->email)->cc(mail_cc())->queue(new \App\Mail\RegisterCourse($order));
 
         return sendResponse($order, 'Gửi mail thành công');
+    }
+
+    public function export(Request $request)
+    {
+        $course_id = $request->course_id;
+        $paid_at   = $request->paid_at;
+        $q         = $request->q;
+
+        $folder = 'export/' . date('Y/m/d');
+
+        // Tạo folder nếu chưa tồn tại
+        if (!Storage::disk('public')->exists($folder)) {
+            Storage::disk('public')->makeDirectory($folder);
+        }
+
+        $fileName = 'orders_' . time() . '.xlsx';
+
+        $filePath = $folder . '/' . $fileName;
+
+        Excel::store(new OrdersExport($course_id, $paid_at, $q), $filePath, 'public');
+
+        $url = Storage::disk('public')->url($filePath);
+
+        return sendResponse($url);
     }
 }

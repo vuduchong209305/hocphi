@@ -257,6 +257,7 @@
         <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
         <script src="{{ asset('assets/js/waves.min.js') }}"></script>
         <script src="{{ asset('assets/js/simplebar.min.js') }}"></script>
+        <script src="{{ asset('assets/js/feather.min.js') }}"></script>
         <script src="{{ asset('assets/js/bootstrap-editable.min.js') }}"></script>
         <script src="{{ asset('assets/js/Sortable.min.js') }}"></script>
         <script src="{{ asset('assets/js/fancybox.min.js') }}"></script>
@@ -266,7 +267,7 @@
         <script src="{{ asset('assets/js/simple.money.format.js')}}"></script>
 
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+        <script src="{{ asset('assets/js/app.js') }}"></script>
         <script src="{{ asset('assets/js/script.js') }}"></script>
 
         @stack('scripts')
