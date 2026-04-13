@@ -4,7 +4,7 @@
 
 <div class="card">
 
-    <form class="card-body" action="{{ route('user.updateProfile') }}" method="post" enctype="multipart/form-data">
+    <form class="card-body" action="{{ route('admin.updateProfile') }}" method="post" enctype="multipart/form-data">
 
         @csrf
 
