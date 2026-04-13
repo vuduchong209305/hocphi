@@ -73,6 +73,8 @@ Route::group(['prefix' => 'hadmin', 'namespace' => 'Admin'], function() {
             Route::put('store', ['as' => 'update', 'uses' => 'OrderController@store']);
             Route::post('update', ['as' => 'update', 'uses' => 'OrderController@update']);
             Route::post('mail', ['as' => 'mail', 'uses' => 'OrderController@mail']);
+            Route::get('pdf', ['as' => 'pdf', 'uses' => 'OrderController@pdf']);
+            Route::get('preview', ['as' => 'preview', 'uses' => 'OrderController@preview']);
             Route::post('export', ['as' => 'export', 'uses' => 'OrderController@export']);
         });
 

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Course;
 use App\Exports\OrdersExport;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Excel, Storage;
 
 class OrderController extends Controller
@@ -68,6 +69,26 @@ class OrderController extends Controller
         \Mail::to($order->email)->cc(mail_cc())->queue(new \App\Mail\RegisterCourse($order));
 
         return sendResponse($order, 'Gửi mail thành công');
+    }
+
+    public function pdf(Request $request)
+    {
+        $order = Order::findOrFail($request->id);
+
+        $pdf = Pdf::loadView('admin.pdf', compact('order'))
+                    ->setPaper('a4', 'portrait')
+                    ->setOptions([
+                        'defaultFont' => 'DejaVu Sans',
+                        'isRemoteEnabled' => true,
+                        'isHtml5ParserEnabled' => true,
+                    ]);
+
+        return $pdf->download('dang-ky-'.$order->code.'-'.time().'.pdf');
+    }
+
+    public function preview(Request $request)
+    {
+        return view('admin.pdf');
     }
 
     public function export(Request $request)

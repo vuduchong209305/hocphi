@@ -104,76 +104,77 @@
                 </div>
             </div>
 
-            <hr>
-
-            <div class="row">
-                <div class="col-md-6">
-                    <p>Khóa học: <b>{{ $data->course->title ?? null }}</b></p>
-                    <p>Mã thanh toán: <b>{{ $data->code ?? null }}</b></p>
-
-                    <p>Yêu cầu xuất hóa đơn: <b>{{ !empty($data->is_vat) ? 'Có' : 'Không' }}</b></p>
-                    @if(!empty($data->is_vat))
-                    <ul>
-                        <li>
-                            Mã số thuế: <a href="javascript:;" class="live-edit" data-type="textarea" id="mst" data-name="mst" data-pk="{{ $data->id ?? null }}" data-url="{{ route('order.update') }}" data-title="Mã số thuế">{{ $data->mst ?? null }}</a>
-                        </li>
-                        <li>
-                            Tên đơn vị: <a href="javascript:;" class="live-edit" data-type="textarea" id="mst_name" data-name="mst_name" data-pk="{{ $data->id ?? null }}" data-url="{{ route('order.update') }}" data-title="Tên đơn vị">{{ $data->mst_name ?? null }}</a>
-                        </li>
-                        <li>
-                            Địa chỉ đơn vị: <a href="javascript:;" class="live-edit" data-type="textarea" id="mst_address" data-name="mst_address" data-pk="{{ $data->id ?? null }}" data-url="{{ route('order.update') }}" data-title="Địa chỉ đơn vị">{{ $data->mst_address ?? null }}</a>
-                        </li>
-                    </ul>
-                    @endif
-
-                    <button class="btn btn-sm btn-outline-secondary" id="send" type="button">Gửi mail xác nhận</button>
-                </div>
-            	<div class="col-md-6 text-end">
-                    <a href="https://api.vietqr.io/image/{{ HTMLHelper::getOption('bank_code') }}-{{ HTMLHelper::getOption('account_number') }}-Olvjj43.jpg?accountName={{ HTMLHelper::getOption('account_owner') }}&amount={{ !empty($data->price) ? $data->price : 0 }}&addInfo=CME {{ $data->code ?? null }} TT" data-fancybox>
-                        <img src="https://api.vietqr.io/image/{{ HTMLHelper::getOption('bank_code') }}-{{ HTMLHelper::getOption('account_number') }}-Olvjj43.jpg?accountName={{ HTMLHelper::getOption('account_owner') }}&amount={{ !empty($data->price) ? $data->price : 0 }}&addInfo=CME {{ $data->code ?? null }} TT" alt="Mã thanh toán" width="200px">
-                    </a>
-                </div>
-            </div>
-            
-            <hr>
-
-            <div class="row">
-                <div class="col-md-1">
-                    <label for="" class="form-label">CCCD mặt trước</label>
-                    <a href="{{ viewImage($data->cccd_front) }}" data-fancybox="gallery">
-                        <img src="{{ viewImage($data->cccd_front) }}" alt="CCCD mặt trước" width="100%" class="rounded">
-                    </a>
-                </div>
-
-                <div class="col-md-1">
-                    <label for="" class="form-label">CCCD mặt sau</label>
-                    <a href="{{ viewImage($data->cccd_back) }}" data-fancybox="gallery">
-                        <img src="{{ viewImage($data->cccd_back) }}" alt="CCCD mặt sau" width="100%" class="rounded">
-                    </a>
-                </div>
-
-                <div class="col-md-1">
-                    <label for="" class="form-label">Bằng cấp</label>
-                    <a href="{{ viewImage($data->degree) }}" data-fancybox="gallery">
-                        <img src="{{ viewImage($data->degree) }}" alt="Bằng cấp" width="100%" class="rounded">
-                    </a>
-                </div>
-
-                <div class="col-md-1">
-                    <label for="" class="form-label">Chữ ký</label>
-                    <a href="{{ viewImage($data->signature) }}" data-fancybox="gallery">
-                        <img src="{{ viewImage($data->signature) }}" alt="Chữ ký" width="100%" class="rounded">
-                    </a>
-                </div>
-            </div>
-
             {{ vdh_button_form() }}
             
         </form>
     </div>
-
 </div>
 
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <p>Khóa học: <b>{{ $data->course->title ?? null }}</b></p>
+                <p>Mã thanh toán: <b>{{ $data->code ?? null }}</b></p>
+
+                <p>Yêu cầu xuất hóa đơn: <b>{{ !empty($data->is_vat) ? 'Có' : 'Không' }}</b></p>
+                @if(!empty($data->is_vat))
+                <ul>
+                    <li>
+                        Mã số thuế: <a href="javascript:;" class="live-edit" data-type="textarea" id="mst" data-name="mst" data-pk="{{ $data->id ?? null }}" data-url="{{ route('order.update') }}" data-title="Mã số thuế">{{ $data->mst ?? null }}</a>
+                    </li>
+                    <li>
+                        Tên đơn vị: <a href="javascript:;" class="live-edit" data-type="textarea" id="mst_name" data-name="mst_name" data-pk="{{ $data->id ?? null }}" data-url="{{ route('order.update') }}" data-title="Tên đơn vị">{{ $data->mst_name ?? null }}</a>
+                    </li>
+                    <li>
+                        Địa chỉ đơn vị: <a href="javascript:;" class="live-edit" data-type="textarea" id="mst_address" data-name="mst_address" data-pk="{{ $data->id ?? null }}" data-url="{{ route('order.update') }}" data-title="Địa chỉ đơn vị">{{ $data->mst_address ?? null }}</a>
+                    </li>
+                </ul>
+                @endif
+
+                <button class="btn btn-sm btn-outline-secondary" id="send" type="button">Gửi mail xác nhận</button>
+                <a href="{{ route('order.pdf', ['id' => request('id')]) }}" class="btn btn-sm btn-outline-warning">Tạo phiếu đăng ký</a>
+            </div>
+            <div class="col-md-6 text-end">
+                <a href="https://api.vietqr.io/image/{{ HTMLHelper::getOption('bank_code') }}-{{ HTMLHelper::getOption('account_number') }}-Olvjj43.jpg?accountName={{ HTMLHelper::getOption('account_owner') }}&amount={{ !empty($data->price) ? $data->price : 0 }}&addInfo=CME {{ $data->code ?? null }} TT" data-fancybox>
+                    <img src="https://api.vietqr.io/image/{{ HTMLHelper::getOption('bank_code') }}-{{ HTMLHelper::getOption('account_number') }}-Olvjj43.jpg?accountName={{ HTMLHelper::getOption('account_owner') }}&amount={{ !empty($data->price) ? $data->price : 0 }}&addInfo=CME {{ $data->code ?? null }} TT" alt="Mã thanh toán" width="200px">
+                </a>
+            </div>
+        </div>
+        
+        <hr>
+
+        <div class="row">
+            <div class="col-md-1">
+                <label for="" class="form-label">CCCD mặt trước</label>
+                <a href="{{ viewImage($data->cccd_front) }}" data-fancybox="gallery">
+                    <img src="{{ viewImage($data->cccd_front) }}" alt="CCCD mặt trước" width="100%" class="rounded">
+                </a>
+            </div>
+
+            <div class="col-md-1">
+                <label for="" class="form-label">CCCD mặt sau</label>
+                <a href="{{ viewImage($data->cccd_back) }}" data-fancybox="gallery">
+                    <img src="{{ viewImage($data->cccd_back) }}" alt="CCCD mặt sau" width="100%" class="rounded">
+                </a>
+            </div>
+
+            <div class="col-md-1">
+                <label for="" class="form-label">Bằng cấp</label>
+                <a href="{{ viewImage($data->degree) }}" data-fancybox="gallery">
+                    <img src="{{ viewImage($data->degree) }}" alt="Bằng cấp" width="100%" class="rounded">
+                </a>
+            </div>
+
+            <div class="col-md-1">
+                <label for="" class="form-label">Chữ ký</label>
+                <a href="{{ viewImage($data->signature) }}" data-fancybox="gallery">
+                    <img src="{{ viewImage($data->signature) }}" alt="Chữ ký" width="100%" class="rounded">
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
 @push('scripts')
     <script>
         $('#send').click(function(){
@@ -199,5 +200,6 @@
             })
         });
     </script>
+
 @endpush
 @endsection

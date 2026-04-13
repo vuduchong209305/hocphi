@@ -76,14 +76,15 @@
                                 </p>
                             </td>
                             <td>
-                                <p class="mb-0">Tên: {{ $val->course->title ?? null }}</p>
+                                <p class="mb-0">Tên: <b>{{ $val->course->title ?? null }}</b></p>
                                 <p class="mb-0">Lớp: {{ $val->class_code ?? null }}</p>
                                 <p class="mb-0">Khai giảng: {{ $val->start_date ?? null }}</p>
                                 <p class="mb-0">Giá: {{ $val->price ? vdh_format_money($val->price) : 'N/A' }}</p>
                                 <p class="mb-0">Ngày đăng ký: {{ $val->created_at }}</p>
+                                <p class="mb-0">Xuất hóa đơn: {{ $val->is_vat == 1 ? 'Có' : 'Không' }}</p>
                             </td>
                             <td>
-                                <p class="mb-0">Họ tên: {{ $val->fullname ?? null }}</p>
+                                <p class="mb-0">Họ tên: <b>{{ $val->fullname ?? null }}</b></p>
                                 <p class="mb-0">Email: {{ $val->email ?? null }}</p>
                                 <p class="mb-0">Số điện thoại: {{ $val->phone ?? null }}</p>
                                 <p class="mb-0">CCCD: {{ $val->cccd ?? null }}</p>
