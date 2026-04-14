@@ -2,7 +2,7 @@
 @section('title', 'Trang Chủ') 
 @section('content')
 
-<section class="py-20 bg-white">
+<section class="py-20 bg-white" id="dang-ky-khoa-hoc">
     <div class="flex flex-col items-center justify-center w-full">
         <h2 class="text-3xl font-bold mb-4">Đăng ký khóa học</h2>
         <p class="text-gray-500 mb-10">Vui lòng nhập đầy đủ các thông tin bên dưới</p>
@@ -239,7 +239,7 @@
                     </label>
                 </div>
 
-                <button type="submit" class="w-full py-3.5 bg-linear-to-br from-indigo-500 to-purple-600 text-white rounded-lg cursor-pointer transition-all hover:-translate-y-0.5 hover:shadow-[0_10px_20px_rgba(99,102,241,0.3)]" >
+                <button type="submit" class="w-full py-3.5 bg-blue-500 border border-gray-300 text-white rounded-lg cursor-pointer active:scale-95 transition-all" >
                     Đăng ký
                 </button>
             </form>

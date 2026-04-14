@@ -8,6 +8,10 @@
     src: url('./../fonts/Poppins-Bold.ttf');
 }
 
+body {
+    scroll-behavior: smooth;
+}
+
 .swiper-navigation-icon {
     width: 7px !important;
 }

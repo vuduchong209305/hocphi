@@ -109,9 +109,7 @@
                                 </a>
                             </td>
                             <td>
-                                <a href="{{ route('order.create', ['id' => $val->id]) }}" class="btn btn-icon btn-sm bg-primary-subtle" data-bs-toggle="tooltip" data-bs-original-title="Edit">
-                                    <i class="ti ti-pencil fs-14 text-primary"></i>
-                                </a>
+                                {{ vdh_label_button(route('order.create', ['id' => $val->id]), route('order.delete', ['id' => $val->id])) }}
                             </td>
                         </tr>
                     @endforeach

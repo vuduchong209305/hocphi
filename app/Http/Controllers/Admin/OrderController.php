@@ -114,4 +114,50 @@ class OrderController extends Controller
 
         return sendResponse($url);
     }
+
+    public function delete(Request $request)
+    {
+        $listID = $request->get('id');
+
+        if (empty($listID)) {
+            return back()->withErrors('Không có ID');
+        }
+
+        $ids = array_filter(explode(';', $listID));
+
+        if (empty($ids)) {
+            return back()->withErrors('Không có ID hợp lệ');
+        }
+
+        try {
+
+            $orders = Order::whereIn('id', $ids)->get();
+
+            foreach ($orders as $order) {
+
+                $files = [
+                    $order->cccd_front,
+                    $order->cccd_back,
+                    $order->degree,
+                    $order->signature,
+                ];
+
+                foreach ($files as $file) {
+                    if (!empty($file) && Storage::disk('public')->exists($file)) {
+                        Storage::disk('public')->delete($file);
+                    }
+                }
+            }
+
+            $deleted = Order::whereIn('id', $ids)->delete();
+
+            return $deleted
+                ? back()->with('success', "Xóa thành công {$deleted} dữ liệu")
+                : back()->withErrors('Không có dữ liệu để xóa');
+
+        } catch (\Exception $e) {
+
+            return back()->withErrors('Lỗi: ' . $e->getMessage());
+        }
+    }
 }

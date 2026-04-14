@@ -71,8 +71,8 @@
         <div class="w-12 h-12 border-4 border-indigo-200 border-t-indigo-600 rounded-full animate-spin"></div>
     </div>
 
-    <div class="text-white w-full text-center text-sm font-medium py-2 bg-gradient-to-r from-violet-500 via-[#9938CA] to-[#E0724A]">
-        <p>Đào tạo y khoa CME, <a href="javascript:;" class="underline underline-offset-2">Tham gia ngay!</a></p>
+    <div class="text-white w-full text-center text-sm font-medium py-2 bg-gradient-to-r from-blue-500 via-[#9938CA] to-[#E0724A]">
+        <p>Đào tạo y khoa CME, <a href="#dang-ky-khoa-hoc" class="underline underline-offset-2">Đăng ký ngay!</a></p>
     </div>
     <section class="bg-white">
         <div class="max-w-7xl mx-auto px-3">
@@ -142,23 +142,18 @@
             <div class="flex flex-col lg:items-center lg:justify-center">
                 <div class="flex flex-col text-sm space-y-2.5">
                     <h2 class="font-semibold mb-5 text-gray-800">Về chúng tôi</h2>
-                    <a class="hover:text-indigo-600 transition" href="#">Giới thiệu</a>
-                    <a class="hover:text-indigo-600 transition" href="#">Triển lãm</a>
-                    <a class="hover:text-indigo-600 transition" href="#">Giao thương</a>
-                    <a class="hover:text-indigo-600 transition" href="#">Liên hệ hợp tác</a>
+                    <a class="hover:text-indigo-600 transition" href="https://daotaoykhoa.com/bang-gia">Học phí</a>
+                    <a class="hover:text-indigo-600 transition" href="https://daotaoykhoa.com/dang-ky-hoc">Đăng ký học</a>
+                    <a class="hover:text-indigo-600 transition" href="https://daotaoykhoa.com/lich-khai-giang">Lịch khai giảng</a>
+                    <a class="hover:text-indigo-600 transition" href="https://daotaoykhoa.com/thong-tin-khoa-hoc">Thông tin khóa học</a>
                 </div>
             </div>
             
         </div>
         <div class="flex flex-col md:flex-row items-center justify-between gap-4 py-4 border-t border-slate-200">
             <p class="text-center">
-                {{ __('layout.copyright') }} {{ date('Y') }} © <a href="/">daotaoykhoa.com</a> {{ __('layout.all_right_reserved') }}
+                Viện Khoa Học Quản Lý Y tế - Tổ chức trực thuộc Liên hiệp các Hội khoa học và kỹ thuật Việt Nam
             </p>
-            <div class="flex items-center gap-4">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-                <a href="#">Cookie Policy</a>
-            </div>
         </div>
     </footer>
 
