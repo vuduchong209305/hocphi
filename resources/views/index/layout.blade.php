@@ -11,7 +11,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Đào tạo y khoa CME</title>
     <!-- Google / Search Engine Tags -->
-    <meta itemprop="image" content="{{ asset('index/images/banner-cme.webp') }}" />
+    <meta itemprop="image" content="{{ asset('index/images/banner-cme.jpg') }}" />
     <meta name="keywords" content="đào tạo y khoa cme" />
     <meta name="description" content="Đăng ký khóa học đào tạo y khoa CME" />
     <meta name="copyright" content="daotaoykhoa" />
@@ -24,7 +24,7 @@
     <meta property="og:url" itemprop="url" content="{{ url()->current() }}" />
     <meta property="og:title" content="Đào tạo y khoa CME" />
     <meta property="og:description" content="Đăng ký khóa học đào tạo y khoa CME" />
-    <meta property="og:image" content="{{ asset('index/images/banner-cme.webp') }}" />
+    <meta property="og:image" content="{{ asset('index/images/banner-cme.jpg') }}" />
     <meta property="og:image:alt" content="Đào tạo y khoa CME" />
     <meta property="og:site_name" content="daotaoykhoa" />
     <meta property="og:type" content="website" />
@@ -123,7 +123,7 @@
             </div>
             <!-- HERO IMAGE -->
             <div class="relative">
-                <img src="{{ asset('index/images/banner-cme.webp') }}" class="rounded-3xl shadow-2xl" alt="">
+                <img src="{{ asset('index/images/banner-cme.jpg') }}" class="rounded-3xl shadow-2xl" alt="">
             </div>
         </div>
     </section>
