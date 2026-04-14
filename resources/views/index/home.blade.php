@@ -80,11 +80,9 @@
                         <label class="block font-semibold text-gray-900 mb-1" for="education">Trình độ chuyên môn <span class="text-red-500 italic text-sm">(Bắt buộc)</span></label>
                         <select name="education" id="education" required class="w-full px-3 py-3 border border-gray-300 rounded-lg text-sm outline-none focus:border-indigo-500 transition-colors">
                             <option value="">Lựa chọn</option>
-                            <option value="1">THPT</option>
-                            <option value="2">Trung cấp</option>
-                            <option value="3">Cao đẳng</option>
-                            <option value="4">Đại học</option>
-                            <option value="5">Sau đại học</option>
+                            @foreach($educations as $education)
+                                <option value="{{ $education->id ?? null }}">{{ $education->title ?? null }}</option>
+                            @endforeach
                         </select>
                     </div>
 

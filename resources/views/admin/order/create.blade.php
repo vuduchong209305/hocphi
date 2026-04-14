@@ -72,11 +72,9 @@
                     <label class="form-label" for="education">Trình độ chuyên môn</label>
                     <select name="education" id="education" class="form-control">
                         <option value="">Lựa chọn</option>
-                        <option value="1" {{ !empty($data->education) && $data->education == 1 ? 'selected' : null }}>THPT</option>
-                        <option value="2" {{ !empty($data->education) && $data->education == 2 ? 'selected' : null }}>Trung cấp</option>
-                        <option value="3" {{ !empty($data->education) && $data->education == 3 ? 'selected' : null }}>Cao đẳng</option>
-                        <option value="4" {{ !empty($data->education) && $data->education == 4 ? 'selected' : null }}>Đại học</option>
-                        <option value="5" {{ !empty($data->education) && $data->education == 5 ? 'selected' : null }}>Sau đại học</option>
+                        @foreach($educations as $education)
+                        <option value="{{ $education->id ?? null }}" {{ !empty($data->education) && $data->education == $education->id ? 'selected' : null }}>{{ $education->title ?? null }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="col-md-4">

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Course;
 use App\Models\Opening;
+use App\Models\Education;
 use App\Helpers\HTMLHelper;
 use Str;
 
@@ -14,6 +15,7 @@ class HomeController extends BaseController
     public function index()
     {
         $this->html['course'] = Course::status()->orderBy('sort', 'ASC')->get();
+        $this->html['educations'] = Education::get();
         return view('index.home', $this->html);
     }
 

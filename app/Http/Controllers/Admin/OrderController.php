@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Course;
+use App\Models\Education;
 use App\Exports\OrdersExport;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Excel, Storage;
@@ -22,6 +23,7 @@ class OrderController extends Controller
     public function create(Request $request)
     {
         $this->html['data'] = Order::findOrFail($request->id);
+        $this->html['educations'] = Education::get();
         return view('admin.order.create', $this->html);
     }
 

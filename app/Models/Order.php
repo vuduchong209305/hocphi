@@ -16,6 +16,11 @@ class Order extends Model
         return $this->belongsTo(Course::class, 'course_id');
     }
 
+    public function education()
+    {
+        return $this->belongsTo(Education::class, 'education');
+    }
+
     public function scopeKeyword($query, $q = null)
     {
         if(!empty($q)) {

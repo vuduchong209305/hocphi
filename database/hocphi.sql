@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 14, 2026 lúc 04:31 AM
+-- Thời gian đã tạo: Th4 14, 2026 lúc 04:38 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -102,6 +102,28 @@ INSERT INTO `vdh_course` (`id`, `title`, `price`, `sort`, `status`, `created_at`
 (24, 'Vệ sinh môi trường bề mặt trong các cơ sở y tế  (CME 08 tiết)', 800000, 11, 1, '2026-04-07 08:47:15', '2026-04-08 07:28:45'),
 (25, 'Tư vấn truyền thông giáo dục sức khoẻ cho người bệnh (CME 24 tiết)', 1500000, 12, 1, '2026-04-07 08:47:19', '2026-04-08 07:28:51'),
 (26, 'Hộ Lý y công  (CME 08 tiết)', 800000, 4, 1, '2026-04-07 08:47:22', '2026-04-08 07:27:55');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `vdh_education`
+--
+
+CREATE TABLE `vdh_education` (
+  `id` int(11) NOT NULL,
+  `title` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `vdh_education`
+--
+
+INSERT INTO `vdh_education` (`id`, `title`) VALUES
+(1, 'THPT'),
+(2, 'Trung cấp'),
+(3, 'Cao đẳng'),
+(4, 'Đại học'),
+(5, 'Sau đại học');
 
 -- --------------------------------------------------------
 
@@ -395,6 +417,12 @@ ALTER TABLE `vdh_course`
   ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
+-- Chỉ mục cho bảng `vdh_education`
+--
+ALTER TABLE `vdh_education`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Chỉ mục cho bảng `vdh_failed_jobs`
 --
 ALTER TABLE `vdh_failed_jobs`
@@ -474,6 +502,12 @@ ALTER TABLE `vdh_admins`
 --
 ALTER TABLE `vdh_course`
   MODIFY `id` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
+--
+-- AUTO_INCREMENT cho bảng `vdh_education`
+--
+ALTER TABLE `vdh_education`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT cho bảng `vdh_failed_jobs`
