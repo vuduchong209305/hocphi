@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 10, 2026 lúc 11:27 AM
+-- Thời gian đã tạo: Th4 14, 2026 lúc 04:31 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -51,7 +51,7 @@ CREATE TABLE `vdh_admins` (
 --
 
 INSERT INTO `vdh_admins` (`id`, `email`, `password`, `phone`, `avatar`, `status`, `fullname`, `birthday`, `passport`, `role_id`, `address`, `forgot_pass_token`, `updated_forgot_token`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'vuduchong209305@gmail.com', '$2y$10$4UdQSmNztB457ugofP3H6.SdzeFwxQ/StlFNutTZ9ZKzD4kNgjOcS', '0986209305', '/assets/uploads/media/images/files/agency/vdh.jpg', 1, 'Vũ Đức Hồng', '06-06-1993', NULL, 1, NULL, NULL, NULL, NULL, NULL, '2026-03-17 14:04:38'),
+(1, 'vuduchong209305@gmail.com', '$2y$10$4UdQSmNztB457ugofP3H6.SdzeFwxQ/StlFNutTZ9ZKzD4kNgjOcS', '0986209305', NULL, 1, 'Vũ Đức Hồng', '1970-01-01', NULL, 1, NULL, NULL, NULL, NULL, NULL, '2026-04-13 13:01:02'),
 (2, 'ph2h.ge@gmail.com', '$2y$12$jImBKmGSeieYWkkQ7ZmUhuyKWwHuXY4HlVTFTit6wTCnW/u0qpXuS', '0904239996', '/assets/uploads/media/images/files/agency/nguyenphihung.png', 1, 'Nguyễn Phi Hùng', NULL, NULL, 4, NULL, NULL, NULL, NULL, '2026-02-08 04:59:28', '2026-02-08 05:02:02'),
 (3, 'quangvinh@globalexpo.com.vn', '$2y$12$EjOXMDEl.y4NVLycNuVQyugEfctis3bX/VF8hNf39ZjQzW6ucbrWm', '0983109909', '/assets/uploads/media/images/files/agency/quangvinh.png', 1, 'Trần Quang Vinh', NULL, NULL, 4, NULL, NULL, NULL, NULL, '2026-02-08 05:04:04', '2026-03-17 14:04:58');
 
@@ -273,14 +273,6 @@ CREATE TABLE `vdh_orders` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Đang đổ dữ liệu cho bảng `vdh_orders`
---
-
-INSERT INTO `vdh_orders` (`id`, `code`, `fullname`, `email`, `phone`, `company`, `cccd`, `birthday`, `birthplace`, `course_id`, `cccd_front`, `cccd_back`, `degree`, `signature`, `gender`, `price`, `address`, `address_cme`, `education`, `paid_at`, `graduate_year`, `graduate_address`, `class_code`, `start_date`, `is_vat`, `mst`, `mst_name`, `mst_address`, `created_at`, `updated_at`) VALUES
-(1, '3S4DBZ5Q8N', 'Vũ Đức Hồng', 'vuduchong209305@gmail.com', '0986209305', 'Funky Global', '022093001103', '06-06-1993', 'Cẩm Phả', 1, 'images/2026/04/10/m57JVEHVLpK7SqD7SdSD.webp', 'images/2026/04/10/GYZjA2AgL3yH03PFSDbY.webp', 'images/2026/04/10/P7XrYfR4NjSqsFIJSG2t.webp', 'images/2026/04/10/rNaLFkp1GR8SERBg5LsI.webp', 1, 2200000, 'Chung cư Nhật Tảo 2', 'Chung cư Nhật Tảo 2', 4, NULL, '2015', 'ĐH Mỏ Địa Chất', 'KSNK-1046', '10-04-2026', NULL, NULL, NULL, NULL, '2026-04-10 07:29:16', '2026-04-10 07:29:16'),
-(2, 'WJY3MN4K8F', 'Vũ Đức Hồng', 'vuduchong209305@gmail.com', '0934338855', 'Global Expo', '022093001103', '06-06-1993', 'Cẩm Phả', 1, 'images/2026/04/10/LiBv1Ba4oKXzkcqlH8OQ.webp', 'images/2026/04/10/CtEjOumc2oID13uLMG88.webp', 'images/2026/04/10/yIqlCQHTZKlyfMRhyUWd.webp', 'images/2026/04/10/nEkPyexSct8fXuawQq2m.webp', 1, 2200000, 'Chung Cư Nhật Tảo 2', 'Chung Cư Nhật Tảo 2', 4, NULL, '2015', 'Hà Nội', 'KSNK-1146', '11-04-2026', 1, '5702177494', 'CÔNG TY TNHH DRAGON AQT TRAVEL', 'Số nhà 226, đường Thành Công, Tổ 3, Khu 7, Phường Cao Xanh, Quảng Ninh', '2026-04-10 07:34:48', '2026-04-10 08:17:23');
 
 -- --------------------------------------------------------
 
@@ -511,7 +503,7 @@ ALTER TABLE `vdh_mail`
 -- AUTO_INCREMENT cho bảng `vdh_orders`
 --
 ALTER TABLE `vdh_orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `vdh_roles`
