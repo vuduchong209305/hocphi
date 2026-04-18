@@ -7,7 +7,7 @@
 
     	<h2 class="text-3xl font-bold mb-4">Thanh toán khóa học</h2>
         <p class="text-gray-500 mb-4">Vui lòng nhập số điện thoại để tìm kiếm</p>
-        <p class="text-red-500 mb-10 italic">Lưu ý: Thời hạn thanh toán học phí vào buổi thứ 02 của khóa đào tạo</p>
+        <p class="text-red-500 mb-10 px-3 italic text-justify"><b>Lưu ý: Thời hạn thanh toán học phí vào buổi thứ 02 của khóa đào tạo</b></p>
         <div class="max-w-7xl mx-auto px-3 md:gap-6 gap-2 flex flex-col items-center justify-center w-full">
 
         	<form id="searchForm" class="flex items-center border gap-2 bg-white border-gray-500/30 h-12 max-w-md w-full rounded-full overflow-hidden">
@@ -60,7 +60,7 @@
 
 		                res.data.forEach(order => {
 						    html += `
-						        <div class="bg-white border border-gray-200 rounded-2xl p-4 shadow-sm hover:shadow-md transition">
+						        <div class="bg-white border border-gray-200 rounded-2xl p-4 shadow-sm hover:shadow-md transition mb-3">
 
 						            <!-- Header -->
 						            <div class="mb-5">
@@ -102,7 +102,7 @@
 						            </div>
 
 						    		<div class="flex justify-center ${order?.paid_at != null ? 'hidden' : ''}">
-						    			<img src="https://api.vietqr.io/image/${order?.bank_code}-${order?.account_number}-Olvjj43.jpg?accountName=${order?.account_owner}&amount=${order?.price}&addInfo=CME ${order?.code} TT" width="400px">
+						    			<img src="https://api.vietqr.io/image/${order?.bank_code}-${order?.account_number}-Olvjj43.jpg?accountName=${order?.account_owner}&amount=${order?.price}&addInfo=CME ${order?.code} TT" width="300px">
 						    		</div>
 						    		
 						        </div>
