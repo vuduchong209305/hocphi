@@ -258,6 +258,8 @@
         <script src="{{ asset('assets/js/waves.min.js') }}"></script>
         <script src="{{ asset('assets/js/simplebar.min.js') }}"></script>
         <script src="{{ asset('assets/js/feather.min.js') }}"></script>
+        <script src="{{ asset('assets/js/ckeditor/ckeditor.js') }}"></script>
+        <script src="{{ asset('assets/js/ckfinder/ckfinder.js') }}"></script>
         <script src="{{ asset('assets/js/bootstrap-editable.min.js') }}"></script>
         <script src="{{ asset('assets/js/Sortable.min.js') }}"></script>
         <script src="{{ asset('assets/js/fancybox.min.js') }}"></script>

@@ -49,7 +49,6 @@ class AdminController extends BaseController
 		$admin->avatar   = $request->avatar;
 
 		if($admin->save()) {
-			vdh_activity_log("Lưu quản trị viên {$admin->email}");
 			return !empty($request->id) ? back()->with('success', 'Lưu thành công') : redirect()->route('admin.index')->with("success", "Lưu thành công");
 		}
 		

@@ -21,7 +21,7 @@
                     <span class="input-group-text">
                         <i class="ti ti-mail"></i>
                     </span>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" autofocus="" value="{{ !empty($user->email) ? $user->email : old('email') }}">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" autofocus="" readonly="" value="{{ !empty($admin->email) ? $admin->email : old('email') }}">
                 </div>
             </div>
 
@@ -31,7 +31,7 @@
                     <span class="input-group-text">
                         <i class="ti ti-user-heart"></i>
                     </span>
-                    <input type="text" class="form-control" name="fullname" placeholder="Họ tên" autofocus="" value="{{ !empty($user->fullname) ? $user->fullname : old('fullname') }}">
+                    <input type="text" class="form-control" name="fullname" placeholder="Họ tên" autofocus="" readonly="" value="{{ !empty($admin->fullname) ? $admin->fullname : old('fullname') }}">
                 </div>
             </div>
 
@@ -70,7 +70,7 @@
                     <span class="input-group-text">
                         <i class="ti ti-phone"></i>
                     </span>
-                    <input type="text" class="form-control" name="phone" placeholder="Số điện thoại" autofocus="" value="{{ !empty($user->phone) ? $user->phone : old('phone') }}">
+                    <input type="text" class="form-control" name="phone" placeholder="Số điện thoại" autofocus="" value="{{ !empty($admin->phone) ? $admin->phone : old('phone') }}">
                 </div>
             </div>
 
@@ -80,7 +80,7 @@
                     <span class="input-group-text">
                         <i class="ti ti-e-passport"></i>
                     </span>
-                    <input type="text" class="form-control" name="passport" placeholder="Căn cước / Hộ chiếu" autofocus="" value="{{ !empty($user->passport) ? $user->passport : old('passport') }}">
+                    <input type="text" class="form-control" name="passport" placeholder="Căn cước / Hộ chiếu" autofocus="" value="{{ !empty($admin->passport) ? $admin->passport : old('passport') }}">
                 </div>
             </div>
 
@@ -90,7 +90,7 @@
                     <span class="input-group-text">
                         <i class="ti ti-calendar"></i>
                     </span>
-                    <input type="text" class="form-control flatpickr" name="birthday" placeholder="Năm sinh" autofocus="" value="{{ !empty($user->birthday) ? $user->birthday : old('birthday') }}">
+                    <input type="text" class="form-control flatpickr" name="birthday" placeholder="Năm sinh" autofocus="" value="{{ !empty($admin->birthday) ? $admin->birthday : old('birthday') }}">
                 </div>
             </div>
 
@@ -100,27 +100,27 @@
                     <span class="input-group-text">
                         <i class="ti ti-map-pins"></i>
                     </span>
-                    <input type="text" class="form-control" name="address" placeholder="Địa chỉ" autofocus="" value="{{ !empty($user->address) ? $user->address : old('address') }}">
+                    <input type="text" class="form-control" name="address" placeholder="Địa chỉ" autofocus="" value="{{ !empty($admin->address) ? $admin->address : old('address') }}">
                 </div>
             </div>
 
             <div class="col-md-6">
                 <label class="form-label" for="role_id">Phân quyền</label>
-                <select id="role_id" name="role_id" class="select2 form-select" data-allow-clear="true">
+                <select id="role_id" name="role_id" class="select2 form-select" data-allow-clear="true" required>
                     <option value="">Select</option>
                     @if(!empty($role))
                         @foreach($role as $val)
-                            <option value="{{ $val->id }}" {{ !empty($user->role_id) && $val->id == $user->role_id ? 'selected' : null }} {{ old('role_id') == $val->id ? 'selected' : null }}>{{ $val->name }}</option>
+                            <option value="{{ $val->id }}" {{ !empty($admin->role_id) && $val->id == $admin->role_id ? 'selected' : null }} {{ old('role_id') == $val->id ? 'selected' : null }}>{{ $val->name }}</option>
                         @endforeach
                     @endif
                 </select>
             </div>
             <div class="col-md-6">
                 <label class="form-label">Avatar</label>
-                {{ vdh_upload_ckfinder(!empty($user->avatar) ? $user->avatar : old('avatar')) }}
+                {{ vdh_upload_ckfinder(!empty($admin->avatar) ? $admin->avatar : old('avatar')) }}
             </div>
             <div class="col-md-6">
-                {{ vdh_input_status(!empty($user->status) ? $user->status : old('status')) }}
+                {{ vdh_input_status(!empty($admin->status) ? $admin->status : old('status')) }}
             </div>
         </div>
         {{ vdh_button_form() }}
