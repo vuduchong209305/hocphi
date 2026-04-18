@@ -111,7 +111,7 @@ class MenuHelper {
 		if (RoleHelper::checkRole('order.index')) {
 			
 			$menu[] = array(
-				'title'   => 'Đơn đăng ký',
+				'title'   => 'Hồ sơ đăng ký',
 				'url'     => route('order.index'),
 				'icon'    => 'ti-box',
 				'active'  => 'hadmin/order/*',

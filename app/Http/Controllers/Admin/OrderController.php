@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Course;
 use App\Models\Education;
+use App\Models\Admin;
+use App\Models\Status;
 use App\Exports\OrdersExport;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Excel, Storage;
@@ -15,8 +17,16 @@ class OrderController extends Controller
 {
     public function index(Request $request)
     {
+        $this->html['admins'] = Admin::get();
         $this->html['courses'] = Course::get();
-        $this->html['orders'] = Order::keyword($request->q)->course($request->course_id)->paid($request->paid_at)->latest()->paginate();
+        $this->html['status'] = Status::get();
+        $this->html['orders'] = Order::keyword($request->q)
+                                ->course($request->course_id)
+                                ->paid($request->paid_at)
+                                ->status($request->status_id)
+                                ->assignedTo($request->assigned_to)
+                                ->latest()->paginate();
+
         return view('admin.order.index', $this->html);
     }
 
@@ -24,6 +34,7 @@ class OrderController extends Controller
     {
         $this->html['data'] = Order::findOrFail($request->id);
         $this->html['educations'] = Education::get();
+        $this->html['admins'] = Admin::get();
         return view('admin.order.create', $this->html);
     }
 
@@ -49,6 +60,7 @@ class OrderController extends Controller
         $order->price = $request->price;
         $order->class_code = $request->class_code;
         $order->start_date = $request->start_date;
+        $order->assigned_to = $request->assigned_to;
         
         $order->paid_at = $request->paid_at == 1 ? now() : null;
 
@@ -161,5 +173,10 @@ class OrderController extends Controller
 
             return back()->withErrors('Lỗi: ' . $e->getMessage());
         }
+    }
+
+    public function status()
+    {
+        return Status::select('id as value', 'name as text')->orderBy('name')->get();
     }
 }

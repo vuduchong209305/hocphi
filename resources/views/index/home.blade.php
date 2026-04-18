@@ -119,6 +119,11 @@
                         <label class="block font-semibold text-gray-900 mb-1" for="mst_address">Địa chỉ đơn vị</label>
                         <input type="text" placeholder="Địa chỉ đơn vị" name="mst_address" id="mst_address" class="w-full px-3 py-3 border border-gray-300 rounded-lg text-sm outline-none focus:border-indigo-500 transition-colors" />
                     </div>
+
+                    <div>
+                        <label class="block font-semibold text-gray-900 mb-1" for="relation_code">Mã quan hệ ngân sách (Không bắt buộc / Dành cho các đơn vị công lập)</label>
+                        <input type="text" placeholder="Mã quan hệ ngân sách" name="relation_code" id="relation_code" class="w-full px-3 py-3 border border-gray-300 rounded-lg text-sm outline-none focus:border-indigo-500 transition-colors" />
+                    </div>
                 </div>
 
                 <!-- Upload Section -->

@@ -78,7 +78,6 @@ class HomeController extends BaseController
         $order->graduate_year = $request->graduate_year;
         $order->graduate_address = $request->graduate_address;
         
-
         $order->cccd_front = HTMLHelper::uploadImage('cccd_front');
         $order->cccd_back = HTMLHelper::uploadImage('cccd_back');
         $order->degree = HTMLHelper::uploadImage('degree');
@@ -89,6 +88,7 @@ class HomeController extends BaseController
             $order->mst = $request->mst;
             $order->mst_name = $request->mst_name;
             $order->mst_address = $request->mst_address;
+            $order->relation_code = $request->relation_code;
         }
 
         if($order->save()) {

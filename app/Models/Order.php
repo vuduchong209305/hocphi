@@ -21,6 +21,28 @@ class Order extends Model
         return $this->belongsTo(Education::class, 'education');
     }
 
+    public function assignedTo()
+    {
+        return $this->belongsTo(Admin::class, 'assigned_to');
+    }
+
+    public function status()
+    {
+        return $this->belongsTo(Status::class, 'status_id');
+    }
+
+    public function scopeAssignedTo($query, $assigned_to = null)
+    {
+        if(!empty($assigned_to))
+            return $query->where('assigned_to', $assigned_to);
+    }
+
+    public function scopeStatus($query, $status_id = null)
+    {
+        if(!empty($status_id))
+            return $query->where('status_id', $status_id);
+    }
+
     public function scopeKeyword($query, $q = null)
     {
         if(!empty($q)) {
@@ -53,4 +75,5 @@ class Order extends Model
             return $paid_at == 1 ? $query->where('paid_at', $paid_at) : $query->whereNull('paid_at');
         }
     }
+
 }

@@ -36,6 +36,8 @@ Route::group(['prefix' => 'hadmin', 'namespace' => 'Admin'], function() {
             Route::get('profile', ['as' => 'profile', 'uses' => 'AdminController@profile']);
             Route::post('profile', ['as' => 'updateProfile', 'uses' => 'AdminController@profile']);
 
+            Route::get('list', ['as' => 'list', 'uses' => 'AdminController@list']);
+
             /* Role */
             Route::group(['prefix' => 'role', 'as' => 'role.'], function() {
                 Route::get('index', ['as' => 'index', 'uses' => 'RoleController@index']);
@@ -70,13 +72,13 @@ Route::group(['prefix' => 'hadmin', 'namespace' => 'Admin'], function() {
             Route::get('index', ['as' => 'index', 'uses' => 'OrderController@index']);
             Route::get('create', ['as' => 'create', 'uses' => 'OrderController@create']);
             Route::post('store', ['as' => 'store', 'uses' => 'OrderController@store']);
-            Route::put('store', ['as' => 'update', 'uses' => 'OrderController@store']);
             Route::post('update', ['as' => 'update', 'uses' => 'OrderController@update']);
             Route::post('mail', ['as' => 'mail', 'uses' => 'OrderController@mail']);
             Route::get('pdf', ['as' => 'pdf', 'uses' => 'OrderController@pdf']);
             Route::get('preview', ['as' => 'preview', 'uses' => 'OrderController@preview']);
             Route::post('export', ['as' => 'export', 'uses' => 'OrderController@export']);
             Route::get('delete', ['as' => 'delete', 'uses' => 'OrderController@delete']);
+            Route::get('status', ['as' => 'status', 'uses' => 'OrderController@status']);
         });
 
         /* Mail */

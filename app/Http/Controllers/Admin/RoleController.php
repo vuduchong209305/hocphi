@@ -35,11 +35,9 @@ class RoleController extends BaseController
 		$role->description = $request->description;
 		$role->status      = $request->boolean('status');
 		$role->permission  = !empty($request->permission) ? implode(';', $request->permission) : null;
-		$role->gate        = !empty($request->gate) ? implode(';', $request->gate) : null;
 		$role->avatar      = $request->avatar;
 		
 		if($role->save()) {
-			vdh_activity_log("Lưu phân quyền " . $role->name);
 			return !empty($request->id) ? back()->with('success', 'Thành công') : redirect()->route('role.index')->with("success", "Thành công");
 		}
 		

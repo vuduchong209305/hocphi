@@ -9,10 +9,7 @@
 
             @csrf
 
-            @if(request('id')) 
-                @method('PUT')
-                <input type="hidden" name="id" value="{{ request('id') }}">
-            @endif
+            <input type="hidden" name="id" value="{{ request('id') }}">
 
             <div class="row g-3">
 
@@ -78,10 +75,6 @@
                     </select>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label" for="mst">Mã số thuế (nếu xuất hóa đơn)</label>
-                    <input type="text" class="form-control" id="mst" name="mst" placeholder="Mã số thuế (nếu xuất hóa đơn)" autofocus="" value="{{ !empty($data->mst) ? $data->mst : old('mst') }}">
-                </div>
-                <div class="col-md-4">
                     <label class="form-label" for="class_code">Mã lớp</label>
                     <input type="text" class="form-control" id="class_code" name="class_code" placeholder="Mã lớp" autofocus="" value="{{ !empty($data->class_code) ? $data->class_code : old('class_code') }}">
                 </div>
@@ -98,6 +91,16 @@
                     <select name="paid_at" id="paid_at" class="form-control">
                         <option value="1" {{ isset($data->paid_at) && $data->paid_at == 1 ? 'selected' : null }}>Đã thanh toán</option>
                         <option value="" {{ is_null($data->paid_at) ? 'selected' : null }}>Chưa thanh toán</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label" for="assigned_to">Giao cho </label>
+                    <select name="assigned_to" id="assigned_to" class="form-control">
+                        <option value="">Lựa chọn</option>
+                        @foreach($admins as $admin)
+                        <option value="{{ $admin->id }}" {{ !empty($data->assigned_to) && $admin->id == $data->assigned_to ? 'selected' : null }}>{{ $admin->fullname ?? $admin->email }}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>
@@ -126,6 +129,9 @@
                     </li>
                     <li>
                         Địa chỉ đơn vị: <a href="javascript:;" class="live-edit" data-type="textarea" id="mst_address" data-name="mst_address" data-pk="{{ $data->id ?? null }}" data-url="{{ route('order.update') }}" data-title="Địa chỉ đơn vị">{{ $data->mst_address ?? null }}</a>
+                    </li>
+                    <li>
+                        Mã quan hệ ngân sách: <a href="javascript:;" class="live-edit" data-type="textarea" id="relation_code" data-name="relation_code" data-pk="{{ $data->id ?? null }}" data-url="{{ route('order.update') }}" data-title="Mã quan hệ ngân sách">{{ $data->relation_code ?? null }}</a>
                     </li>
                 </ul>
                 @endif

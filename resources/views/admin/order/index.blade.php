@@ -8,7 +8,7 @@
         <form action="#">
             <div class="row">
 
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <label class="form-label">Khóa học</label>
                     <select name="course_id" id="course_id" class="form-control">
                         <option value="">Tất cả</option>
@@ -18,7 +18,27 @@
                     </select>
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-2">
+                    <label class="form-label">Người phụ trách</label>
+                    <select name="assigned_to" id="assigned_to" class="form-control">
+                        <option value="">Tất cả</option>
+                        @foreach($admins as $admin)
+                        <option value="{{ $admin->id }}" {{ !empty($admin->id) && request('assigned_to') == $admin->id ? 'selected' : null }}>{{ $admin->fullname ?? $admin->email }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="col-md-2">
+                    <label class="form-label">Trạng thái</label>
+                    <select name="status_id" id="status_id" class="form-control">
+                        <option value="">Tất cả</option>
+                        @foreach($status as $st)
+                        <option value="{{ $st->id }}" {{ !empty($st->id) && request('status_id') == $st->id ? 'selected' : null }}>{{ $st->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="col-md-2">
                     <label class="form-label">Thanh toán</label>
                     <select name="paid_at" id="paid_at" class="form-control">
                         <option value="">Tất cả</option>
@@ -26,6 +46,7 @@
                         <option value="0" {{ request('paid_at') == '0' ? 'selected' : null }}>Chưa thanh toán</option>
                     </select>
                 </div>
+
                 <div class="col-md-3">
                     <label class="form-label">Tìm kiếm</label>
                     <div class="form-group">
@@ -71,8 +92,16 @@
                             <td>
                                 <p class="mb-0">{{ $val->code ?? null }}</p>
 
-                                <p class="mb-0">
+                                <p class="mb-2">
                                     {!! !empty($val->paid_at) ? "<span class='badge bg-success-subtle text-success fw-semibold rounded-pill'>{$val->paid_at}</span>" : '<span class="badge bg-warning-subtle text-warning fw-semibold rounded-pill">Chưa thanh toán</span>' !!}
+                                </p>
+
+                                <p class="mb-2">
+                                    <a href="#" data-type="select" class="assigned_to" data-name="assigned_to" data-pk="{{ $val->id ?? null }}" data-url="{{ route('order.update') }}" data-title="Người phụ trách" data-value="{{ $val->assigned_to }}">{{ $val->assignedTo->fullname ?? 'Người phụ trách' }}</a>
+                                </p>
+
+                                <p class="mb-0">
+                                    <a href="#" data-type="select" class="status" data-name="status_id" data-pk="{{ $val->id ?? null }}" data-url="{{ route('order.update') }}" data-title="Trạng thái" data-value="{{ $val->status_id }}">{{ $val->status->name ?? 'Trạng thái' }}</a>
                                 </p>
                             </td>
                             <td>
@@ -122,6 +151,17 @@
 
 @push('scripts')
     <script>
+
+        $('.assigned_to').editable({
+            sourceCache: true,
+            source: '{{ route("admin.list") }}'
+        });
+
+        $('.status').editable({
+            sourceCache: true,
+            source: '{{ route("order.status") }}'
+        });
+
         $('.export').click(function(){
             Swal.fire({
                 title: `Xuất file Excel`,

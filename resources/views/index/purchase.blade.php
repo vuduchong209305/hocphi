@@ -6,7 +6,8 @@
     <div class="flex flex-col items-center justify-center w-full">
 
     	<h2 class="text-3xl font-bold mb-4">Thanh toán khóa học</h2>
-        <p class="text-gray-500 mb-10">Vui lòng nhập số điện thoại để tìm kiếm</p>
+        <p class="text-gray-500 mb-4">Vui lòng nhập số điện thoại để tìm kiếm</p>
+        <p class="text-red-500 mb-10 italic">Lưu ý: Thời hạn thanh toán học phí vào buổi thứ 02 của khóa đào tạo</p>
         <div class="max-w-7xl mx-auto px-3 md:gap-6 gap-2 flex flex-col items-center justify-center w-full">
 
         	<form id="searchForm" class="flex items-center border gap-2 bg-white border-gray-500/30 h-12 max-w-md w-full rounded-full overflow-hidden">

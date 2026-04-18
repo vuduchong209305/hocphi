@@ -137,15 +137,33 @@
                 <a href="{{ route('index.home') }}" class="w-70 block">
                     <img src="{{ asset('assets/images/logo.png') }}" class="w-50" alt="logo">
                 </a>
-                <p class="text-sm/7 mt-3">Là Phòng Tuyển sinh trực thuộc Viện Khoa học Quản lý Y tế –  được thành lập theo quyết định số 474/QĐ-LHHVN ngày 14/7/2016 của Chủ tịch Liên hiệp các Hội Khoa học kỹ thuật Việt Nam.</p>
+                <div class="text-sm/7 mt-3 ml-3">
+                    <ul class="list-disc">
+                        <li>
+                            Viện Khoa học Quản lý Y tế
+                        </li>
+                        <li>
+                            MST: 0107529558
+                        </li>
+                        <li>
+                            Hotline: 0913.206.810 - 0862.016.106
+                        </li>
+                        <li>
+                            Địa chỉ: 2/1 Trần Quốc Hoàn - Cầu Giấy - Hà Nội
+                        </li>
+                        <li>
+                            Email: daotaoycme@gmail.com
+                        </li>
+                    </ul>
+                </div>
             </div>
             <div class="flex flex-col lg:items-center lg:justify-center">
                 <div class="flex flex-col text-sm space-y-2.5">
                     <h2 class="font-semibold mb-5 text-gray-800">Về chúng tôi</h2>
-                    <a class="hover:text-indigo-600 transition" href="https://daotaoykhoa.com/bang-gia">Học phí</a>
-                    <a class="hover:text-indigo-600 transition" href="https://daotaoykhoa.com/dang-ky-hoc">Đăng ký học</a>
+                    <a class="hover:text-indigo-600 transition" href="https://daotaoykhoa.com/lich-khai-giang">Học phí</a>
                     <a class="hover:text-indigo-600 transition" href="https://daotaoykhoa.com/lich-khai-giang">Lịch khai giảng</a>
-                    <a class="hover:text-indigo-600 transition" href="https://daotaoykhoa.com/thong-tin-khoa-hoc">Thông tin khóa học</a>
+                    <a class="hover:text-indigo-600 transition" href="https://daotaoykhoa.com/cac-khoa-hoc">Thông tin khóa học</a>
+                    <a class="hover:text-indigo-600 transition" href="https://daotaoykhoa.com/chinh-sach-va-quy-dinh-dao-tao-cme">Chính sách</a>
                 </div>
             </div>
             

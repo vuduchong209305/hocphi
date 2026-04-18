@@ -265,7 +265,8 @@
         <script src="{{ asset('assets/js/flatpickr.js')}}"></script>
         <script src="{{ asset('assets/js/flatpickr-vn.js')}}"></script>
         <script src="{{ asset('assets/js/simple.money.format.js')}}"></script>
-
+        <script src="{{ asset('assets/js/jquery.multi-select.js') }}"></script>
+        <script src="{{ asset('assets/js/jquery.quicksearch.min.js') }}"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="{{ asset('assets/js/app.js') }}"></script>
         <script src="{{ asset('assets/js/script.js') }}"></script>

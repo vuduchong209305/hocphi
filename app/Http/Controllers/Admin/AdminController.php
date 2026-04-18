@@ -120,6 +120,10 @@ class AdminController extends BaseController
 		if($admin->save()) return back()->with('success', 'Cập nhật thành công');
 		
 		return back()->withErrors('Đã có lỗi xảy ra, vui lòng thử lại');
-
 	}
+
+	public function list()
+    {
+        return Admin::select('id as value', 'fullname as text')->orderBy('fullname')->get();
+    }
 }
