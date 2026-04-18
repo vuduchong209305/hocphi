@@ -18,7 +18,7 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         $this->html['admins'] = Admin::get();
-        $this->html['courses'] = Course::get();
+        $this->html['courses'] = Course::orderBy('title')->get();
         $this->html['status'] = Status::get();
         $this->html['orders'] = Order::keyword($request->q)
                                 ->course($request->course_id)

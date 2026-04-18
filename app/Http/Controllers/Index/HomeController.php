@@ -14,7 +14,7 @@ class HomeController extends BaseController
 {
     public function index()
     {
-        $this->html['course'] = Course::status()->orderBy('sort', 'ASC')->get();
+        $this->html['course'] = Course::status()->orderBy('title')->get();
         $this->html['educations'] = Education::get();
         return view('index.home', $this->html);
     }

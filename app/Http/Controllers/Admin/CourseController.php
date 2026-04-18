@@ -11,7 +11,7 @@ class CourseController extends Controller
 {
     public function index(Request $request)
     {
-        $this->html['data'] = Course::orderBy('sort', 'ASC')->get();
+        $this->html['data'] = Course::orderBy('title')->get();
 
         if(!empty($request->id))
             $this->html['course'] = Course::findOrFail($request->id);
