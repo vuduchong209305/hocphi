@@ -79,10 +79,10 @@
             <thead>
                 <tr>
                     <th width="10%">Mã thanh toán</th>
-                    <th width="40%">Khóa học</th>
+                    <th width="35%">Khóa học</th>
                     <th width="25%">Thông tin</th>
                     <th width="20%">Giấy tờ</th>
-                    <th width="5%">#</th>
+                    <th width="10%">#</th>
                 </tr>
             </thead>
             <tbody>
@@ -139,6 +139,9 @@
                             </td>
                             <td>
                                 {{ vdh_label_button(route('order.create', ['id' => $val->id]), route('order.delete', ['id' => $val->id])) }}
+                                <div class="mt-2">
+                                    <a href="{{ route('order.pdf', ['id' => $val->id]) }}" class="btn btn-sm btn-outline-warning">Tạo phiếu đăng ký</a>
+                                </div>
                             </td>
                         </tr>
                     @endforeach
