@@ -21,7 +21,7 @@
                     <span class="input-group-text">
                         <i class="ti ti-mail"></i>
                     </span>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" autofocus="" readonly="" value="{{ !empty($admin->email) ? $admin->email : old('email') }}">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" autofocus="" value="{{ !empty($admin->email) ? $admin->email : old('email') }}">
                 </div>
             </div>
 
@@ -31,7 +31,7 @@
                     <span class="input-group-text">
                         <i class="ti ti-user-heart"></i>
                     </span>
-                    <input type="text" class="form-control" name="fullname" placeholder="Họ tên" autofocus="" readonly="" value="{{ !empty($admin->fullname) ? $admin->fullname : old('fullname') }}">
+                    <input type="text" class="form-control" name="fullname" placeholder="Họ tên" autofocus="" value="{{ !empty($admin->fullname) ? $admin->fullname : old('fullname') }}">
                 </div>
             </div>
 
