@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-use App\Models\User;
+use App\Models\Admin;
 
 class CheckAdminLogin
 {
@@ -16,11 +16,12 @@ class CheckAdminLogin
      */
     public function handle(Request $request, Closure $next): Response
     {
+
         if(auth()->check() && auth()->user()->status == 1) {
             
             if(auth()->id() == 1) return $next($request);
-            
-            $role_user = User::findOrFail(auth()->id())->role;
+
+            $role_user = Admin::find(auth()->id())->role;
 
             if(!empty($role_user->status) && $role_user->status != 1) {
 

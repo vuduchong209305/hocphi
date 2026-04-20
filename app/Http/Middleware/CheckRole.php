@@ -18,7 +18,7 @@ class CheckRole
         if(auth()->id() == 1) return $next($request);
 
         $role = auth()->user()->role;
-
+        
         if(empty($role)) return redirect()->route('403');
 
         $route = $request->route()->getName();

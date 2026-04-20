@@ -1,4 +1,4 @@
-{{-- @if (count($errors) > 0)
+@if (count($errors) > 0)
     <div class="alert alert-danger d-flex align-items-center" role="alert">
         <ul class="list-group">
             @foreach($errors->all() as $error)
@@ -24,7 +24,7 @@
     .list-group {
         list-style-type: none;
     }
-</style> --}}
+</style>
 
 @push('scripts')
 <script>

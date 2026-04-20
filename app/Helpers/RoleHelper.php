@@ -1,7 +1,7 @@
 <?php 
 namespace App\Helpers;
 
-use App\Models\User;
+use App\Models\Admin;
 use Route;
 
 class RoleHelper {
@@ -10,7 +10,7 @@ class RoleHelper {
 	{
 		if(auth()->id() == 1) return true;
 		
-		$user = User::find(auth()->id())->role;
+		$user = Admin::find(auth()->id())->role;
 
 		if(!$user) return false;
 

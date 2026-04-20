@@ -36,8 +36,6 @@
 
     <!-- body start -->
     <body data-menu-color="light" data-sidebar="default">
-
-        @include('admin.blocks.notification')
         
         <!-- Begin page -->
         <div id="app-layout">
@@ -226,6 +224,8 @@
                             </div>
                         </div>
 
+                        @include('admin.blocks.notification')
+                        
                         @yield('content')
                            
                     </div> <!-- container-fluid -->
