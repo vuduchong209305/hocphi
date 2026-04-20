@@ -261,31 +261,45 @@ function notify(title = 'Notify Title', text = 'Notify text lorem ipsum', status
     })
 }
 
-$(".avatar").change(function(e) {
+$(document).ready(function () {
 
-    const size_set = 2
+    const MAX_SIZE_MB = 2;
 
-    var files = e.target.files,
-        size = files[0].size,
-        size = (size / 1024) / 1014;
+    // =========================
+    // PREVIEW IMAGE
+    // =========================
+    $(document).on('change', '.account-file-input', function (e) {
 
-    if(size > size_set) {
-        toastr.error(`Ảnh không vượt quá ${size_set}MB`)
-        return false;
-    }
+        const input = this;
+        const file = input.files[0];
 
-    if (files[0]) {
-        const reader = new FileReader();
-        const that = this;
-        reader.onload = function(e) {
-            var file = e.target.result;
-            const parents = $(that).parents('.group_image')
-            parents.find('.preview').attr('src', file);
-            parents.find('[data-fancybox=gallery]').attr('href', file);
+        if (!file) return;
+
+        // check size
+        const sizeMB = file.size / 1024 / 1024;
+
+        if (sizeMB > MAX_SIZE_MB) {
+            toastr.error(`Ảnh không vượt quá ${MAX_SIZE_MB}MB`);
+            input.value = '';
+            return;
         }
 
-        reader.readAsDataURL(files[0]);
-    }
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+
+            const group = $(input).closest('.group_image');
+
+            group.find('.preview').attr('src', e.target.result);
+            group.find('[data-fancybox="gallery"]').attr('href', e.target.result);
+
+            // clear hidden current image (optional)
+            group.find('.image_value').val('');
+        };
+
+        reader.readAsDataURL(file);
+    });
+
 });
 
 function setStep(currentStep) {

@@ -44,6 +44,73 @@ class HTMLHelper {
         }
     }
 
+    public static function updateImage($avatar_old = '', $type = 'avatar', $folder = 'images', $max_width = 500, $max_height = 500)
+    {
+        $currentField = $type . '_current';
+
+        // ========================
+        // 1. Upload file mới
+        // ========================
+        if (Request::hasFile($type) && Request::file($type)->isValid()) {
+
+            $imageFile = Request::file($type);
+            $extension = strtolower($imageFile->getClientOriginalExtension());
+            $types = ['jpeg', 'jpg', 'png', 'webp'];
+
+            if (!in_array($extension, $types)) {
+                return $avatar_old;
+            }
+
+            $path = $folder . '/' . date('Y/m/d');
+
+            if (!Storage::disk('public')->exists($path)) {
+                Storage::disk('public')->makeDirectory($path);
+            }
+
+            $manager = new ImageManager(new Driver());
+            $image = $manager->read($imageFile->getRealPath());
+
+            // resize giữ tỉ lệ
+            $image->scaleDown($max_width, $max_height);
+
+            $fileName = $path . '/' . str()->random(20) . '.webp';
+
+            $encoded = $image->toWebp(100);
+
+            Storage::disk('public')->put($fileName, (string) $encoded);
+
+            // Xóa ảnh cũ
+            if (!empty($avatar_old) && Storage::disk('public')->exists($avatar_old)) {
+                Storage::disk('public')->delete($avatar_old);
+            }
+
+            return $fileName;
+        }
+
+        // ========================
+        // 2. Không upload mới
+        // ========================
+
+        $currentValue = request()->input($currentField);
+
+        // Giữ nguyên ảnh
+        if ($currentValue == $avatar_old) {
+            return $avatar_old;
+        }
+
+        // Xóa ảnh (user bấm remove)
+        if (empty($currentValue)) {
+
+            if (!empty($avatar_old) && Storage::disk('public')->exists($avatar_old)) {
+                Storage::disk('public')->delete($avatar_old);
+            }
+
+            return null;
+        }
+
+        return $avatar_old;
+    }
+
     public static function renderBladeString($template, $data = []) {
         $generated = Blade::compileString($template);
 

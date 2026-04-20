@@ -105,6 +105,26 @@
                 </div>
             </div>
 
+            <hr>
+            
+            <div class="row">
+                <div class="col-md-3">
+                    {{ vdh_upload_avatar($data->cccd_front, 'cccd_front') }}
+                </div>
+
+                <div class="col-md-3">
+                    {{ vdh_upload_avatar($data->cccd_back, 'cccd_back') }}
+                </div>
+
+                <div class="col-md-3">
+                    {{ vdh_upload_avatar($data->degree, 'degree') }}
+                </div>
+
+                <div class="col-md-3">
+                    {{ vdh_upload_avatar($data->signature, 'signature') }}
+                </div>
+            </div>
+
             {{ vdh_button_form() }}
             
         </form>
@@ -145,38 +165,7 @@
                 </a>
             </div>
         </div>
-        
-        <hr>
 
-        <div class="row">
-            <div class="col-md-1">
-                <label for="" class="form-label">CCCD mặt trước</label>
-                <a href="{{ viewImage($data->cccd_front) }}" data-fancybox="gallery">
-                    <img src="{{ viewImage($data->cccd_front) }}" alt="CCCD mặt trước" width="100%" class="rounded">
-                </a>
-            </div>
-
-            <div class="col-md-1">
-                <label for="" class="form-label">CCCD mặt sau</label>
-                <a href="{{ viewImage($data->cccd_back) }}" data-fancybox="gallery">
-                    <img src="{{ viewImage($data->cccd_back) }}" alt="CCCD mặt sau" width="100%" class="rounded">
-                </a>
-            </div>
-
-            <div class="col-md-1">
-                <label for="" class="form-label">Bằng cấp</label>
-                <a href="{{ viewImage($data->degree) }}" data-fancybox="gallery">
-                    <img src="{{ viewImage($data->degree) }}" alt="Bằng cấp" width="100%" class="rounded">
-                </a>
-            </div>
-
-            <div class="col-md-1">
-                <label for="" class="form-label">Chữ ký</label>
-                <a href="{{ viewImage($data->signature) }}" data-fancybox="gallery">
-                    <img src="{{ viewImage($data->signature) }}" alt="Chữ ký" width="100%" class="rounded">
-                </a>
-            </div>
-        </div>
     </div>
 </div>
 @push('scripts')

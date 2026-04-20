@@ -275,6 +275,28 @@
 
         @stack('scripts')
 
+        <script>
+            // =========================
+            // REMOVE IMAGE
+            // =========================
+            $(document).on('click', '.remove_image', function () {
+
+                const group = $(this).closest('.group_image');
+
+                // reset input file
+                group.find('input[type="file"]').val('');
+
+                // reset preview về default
+                const defaultImg = "{{ no_image() }}";
+
+                group.find('.preview').attr('src', defaultImg);
+                group.find('[data-fancybox="gallery"]').attr('href', defaultImg);
+
+                // clear hidden
+                group.find('.image_value').val('');
+            });
+        </script>
+        
     </body> 
 
 </html>

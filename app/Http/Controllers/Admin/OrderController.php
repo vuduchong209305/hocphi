@@ -10,6 +10,7 @@ use App\Models\Education;
 use App\Models\Admin;
 use App\Models\Status;
 use App\Exports\OrdersExport;
+use App\Helpers\HTMLHelper;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Excel, Storage;
 
@@ -63,6 +64,11 @@ class OrderController extends Controller
         $order->assigned_to = $request->assigned_to;
         
         $order->paid_at = $request->paid_at == 1 ? now() : null;
+
+        $order->cccd_front = HTMLHelper::updateImage($order->cccd_front, 'cccd_front');
+        $order->cccd_back = HTMLHelper::updateImage($order->cccd_back, 'cccd_back');
+        $order->degree = HTMLHelper::updateImage($order->degree, 'degree');
+        $order->signature = HTMLHelper::updateImage($order->signature, 'signature');
 
         if($order->save()) {
             return back()->with('success', 'Lưu thành công');
