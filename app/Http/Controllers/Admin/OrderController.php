@@ -11,8 +11,13 @@ use App\Models\Admin;
 use App\Models\Status;
 use App\Exports\OrdersExport;
 use App\Helpers\HTMLHelper;
+
 use Barryvdh\DomPDF\Facade\Pdf;
-use Excel, Storage;
+
+use App\Services\XMLBuilder;
+use App\Services\VNPTInvoiceService;
+
+use Excel, Storage, Log;
 
 class OrderController extends Controller
 {
@@ -184,5 +189,52 @@ class OrderController extends Controller
     public function status()
     {
         return Status::select('id as value', 'name as text')->orderBy('name')->get();
+    }
+
+    public function invoice(Request $request)
+    {
+        try {
+            $order = Order::findOrFail($request->id);
+
+            $xml = XMLBuilder::build($order);
+
+            $service = new VNPTInvoiceService();
+            $result = $service->publish($xml);
+
+            if (!$result['success']) {
+                throw new \Exception($result['message']);
+            }
+
+            $info = $this->parseInvoice($result['raw']);
+
+            $order->update([
+                'invoice_status' => 'done',
+                'invoice_number' => $info['number'],
+                'invoice_pattern' => $info['pattern'],
+                'invoice_serial' => $info['serial'],
+            ]);
+
+        } catch (\Exception $e) {
+            Log::debug($e->getMessage());
+            return back()->withErrors('Có lỗi xảy ra');
+        }
+        
+    }
+
+    public function parseInvoice($raw)
+    {
+        // OK:pattern;serial-key_number
+        $raw = str_replace('OK:', '', $raw);
+
+        [$patternSerial, $data] = explode('-', $raw);
+        [$pattern, $serial] = explode(';', $patternSerial);
+
+        [$key, $number] = explode('_', $data);
+
+        return [
+            'pattern' => $pattern,
+            'serial' => $serial,
+            'number' => $number,
+        ];
     }
 }

@@ -75,6 +75,7 @@ Route::group(['prefix' => 'hadmin', 'namespace' => 'Admin'], function() {
             Route::post('update', ['as' => 'update', 'uses' => 'OrderController@update']);
             Route::post('mail', ['as' => 'mail', 'uses' => 'OrderController@mail']);
             Route::get('pdf', ['as' => 'pdf', 'uses' => 'OrderController@pdf']);
+            Route::get('invoice', ['as' => 'invoice', 'uses' => 'OrderController@invoice']);
             Route::get('preview', ['as' => 'preview', 'uses' => 'OrderController@preview']);
             Route::post('export', ['as' => 'export', 'uses' => 'OrderController@export']);
             Route::get('delete', ['as' => 'delete', 'uses' => 'OrderController@delete']);

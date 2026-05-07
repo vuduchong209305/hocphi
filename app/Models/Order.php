@@ -11,6 +11,8 @@ class Order extends Model
 
     protected $table = 'orders';
 
+    protected $fillable = ['invoice_status', 'invoice_number', 'invoice_pattern', 'invoice_serial'];
+
     public function course()
     {
         return $this->belongsTo(Course::class, 'course_id');

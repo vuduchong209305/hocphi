@@ -154,10 +154,14 @@
                         Mã quan hệ ngân sách: <a href="javascript:;" class="live-edit" data-type="textarea" id="relation_code" data-name="relation_code" data-pk="{{ $data->id ?? null }}" data-url="{{ route('order.update') }}" data-title="Mã quan hệ ngân sách">{{ $data->relation_code ?? null }}</a>
                     </li>
                 </ul>
+
+                <a href="{{ route('order.invoice', ['id' => request('id')]) }}" class="btn btn-sm btn-success">Xuất hóa đơn</a>
+
                 @endif
 
                 <button class="btn btn-sm btn-outline-secondary" id="send" type="button">Gửi mail xác nhận</button>
                 <a href="{{ route('order.pdf', ['id' => request('id')]) }}" class="btn btn-sm btn-outline-warning">Tạo phiếu đăng ký</a>
+
             </div>
             <div class="col-md-6 text-end">
                 <a href="https://api.vietqr.io/image/{{ HTMLHelper::getOption('bank_code') }}-{{ HTMLHelper::getOption('account_number') }}-Olvjj43.jpg?accountName={{ HTMLHelper::getOption('account_owner') }}&amount={{ !empty($data->price) ? $data->price : 0 }}&addInfo=CME {{ $data->code ?? null }} TT" data-fancybox>
