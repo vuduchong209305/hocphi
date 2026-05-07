@@ -8,48 +8,103 @@ class XMLBuilder
 {
     public static function build($order)
     {
-        $xml = new \SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><Invoices/>');
+        $xml = new \SimpleXMLElement(
+            '<?xml version="1.0" encoding="UTF-8"?><Invoices/>'
+        );
 
-	    $inv = $xml->addChild('Inv');
-	    $inv->addChild('key', $order->id);
+        $inv = $xml->addChild('Inv');
 
-	    $invoice = $inv->addChild('Invoice');
+        // key unique
+        $inv->addChild('key', 'ORDER_' . $order->id);
 
-	    $invoice->addChild('CusCode', self::safe($order->mst));
-	    $invoice->addChild('CusName', self::safe($order->mst_name));
-	    $invoice->addChild('CusAddress', self::safe($order->mst_address));
-	    $invoice->addChild('PaymentMethod', 'CK');
+        $invoice = $inv->addChild('Invoice');
 
-	    $products = $invoice->addChild('Products');
+        // thông tin khách hàng
+        $invoice->addChild('CusCode', $order->code);
 
-	    $product = $products->addChild('Product');
+        $invoice->addChild(
+            'CusName',
+            self::safe($order->mst_name ?: $order->fullname)
+        );
 
-	    $product->addChild('ProdName', self::safe($order->course->title));
-	    $product->addChild('ProdUnit', 'Khóa học');
-	    $product->addChild('ProdQuantity', 1);
-	    $product->addChild('ProdPrice', $order->price);
+        $invoice->addChild(
+            'CusAddress',
+            self::safe($order->mst_address ?: 'Việt Nam')
+        );
 
-	    $total = $order->price;
-	    $vat = round($total * 0.1);
+        if (!empty($order->mst)) {
+            $invoice->addChild(
+                'CusTaxCode',
+                self::safe($order->mst)
+            );
+        }
 
-	    $product->addChild('Total', $total);
-	    $product->addChild('VATRate', 10);
-	    $product->addChild('VATAmount', $vat);
-	    $product->addChild('Amount', $total + $vat);
+        if (!empty($order->phone)) {
+            $invoice->addChild(
+                'CusPhone',
+                self::safe($order->phone)
+            );
+        }
 
-	    // tổng hóa đơn
-	    $invoice->addChild('Total', $total);
-	    $invoice->addChild('VATRate', 10);
-	    $invoice->addChild('VATAmount', $vat);
-	    $invoice->addChild('Amount', $total + $vat);
+        $invoice->addChild('PaymentMethod', 'CK');
 
-	    $invoice->addChild('AmountInWords', self::safe(NumberHelper::numberToWords($total + $vat)));
+        // sản phẩm
+        $products = $invoice->addChild('Products');
 
-	    return $xml->asXML();
+        $product = $products->addChild('Product');
+
+        $product->addChild(
+            'ProdName',
+            self::safe($order->course->title)
+        );
+
+        $product->addChild('ProdUnit', 'Khóa học');
+
+        $product->addChild('ProdQuantity', 1);
+
+        $product->addChild('ProdPrice', (int)$order->price);
+
+        $total = (int)$order->price;
+
+        $vatRate = 10;
+
+        $vat = round($total * ($vatRate / 100));
+
+        $amount = $total + $vat;
+
+        $product->addChild('Total', $total);
+
+        $product->addChild('VATRate', $vatRate);
+
+        $product->addChild('VATAmount', $vat);
+
+        $product->addChild('Amount', $amount);
+
+        // tổng hóa đơn
+        $invoice->addChild('Total', $total);
+
+        $invoice->addChild('VATRate', $vatRate);
+
+        $invoice->addChild('VATAmount', $vat);
+
+        $invoice->addChild('Amount', $amount);
+
+        $invoice->addChild(
+            'AmountInWords',
+            self::safe(
+                NumberHelper::numberToWords($amount)
+            )
+        );
+
+        return $xml->asXML();
     }
 
     private static function safe($value)
     {
-        return htmlspecialchars($value ?? '', ENT_XML1, 'UTF-8');
+        return htmlspecialchars(
+            $value ?? '',
+            ENT_XML1,
+            'UTF-8'
+        );
     }
 }
