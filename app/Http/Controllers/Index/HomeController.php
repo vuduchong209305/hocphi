@@ -112,6 +112,8 @@ class HomeController extends BaseController
         $data = $orders->map(function ($item) {
             return [
                 'code' => $item->code,
+                'fullname' => $item->fullname,
+                'phone' => $item->phone,
                 'paid_at' => $item->paid_at,
                 'paid_at_text' => $item->paid_at ? "Đã thanh toán: {$item->paid_at}" : 'Chưa thanh toán',
                 'course' => $item->course->title ?? null,

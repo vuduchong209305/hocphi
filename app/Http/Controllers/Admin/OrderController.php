@@ -194,47 +194,49 @@ class OrderController extends Controller
     public function invoice(Request $request)
     {
         try {
+
             $order = Order::findOrFail($request->id);
 
-            $xml = XMLBuilder::build($order);
+            // build invoice xml
+            $invoiceXml = XMLBuilder::build($order);
 
+            // gửi VNPT
             $service = new VNPTInvoiceService();
-            $result = $service->publish($xml);
 
+            $soapResponse = $service->publish($invoiceXml);
+
+            Log::info($soapResponse);
+
+            // parse SOAP response
+            $result = $service->parseSOAPResponse($soapResponse);
+
+            // kiểm tra lỗi
             if (!$result['success']) {
                 throw new \Exception($result['message']);
             }
 
-            $info = $this->parseInvoice($result['raw']);
-
+            // lưu DB
             $order->update([
                 'invoice_status' => 'done',
-                'invoice_number' => $info['number'],
-                'invoice_pattern' => $info['pattern'],
-                'invoice_serial' => $info['serial'],
+                'invoice_number' => $result['invoice_number'] ?? null,
+                'invoice_pattern' => $result['pattern'] ?? null,
+                'invoice_serial' => $result['serial'] ?? null,
+                'invoice_response' => $soapResponse,
             ]);
 
+            return back()->with(
+                'success',
+                'Xuất hóa đơn thành công'
+            );
+
         } catch (\Exception $e) {
-            Log::debug($e->getMessage());
-            return back()->withErrors('Có lỗi xảy ra');
+
+            Log::error('VNPT INVOICE ERROR: ' . $e->getMessage());
+
+            return back()->withErrors(
+                $e->getMessage()
+            );
         }
         
-    }
-
-    public function parseInvoice($raw)
-    {
-        // OK:pattern;serial-key_number
-        $raw = str_replace('OK:', '', $raw);
-
-        [$patternSerial, $data] = explode('-', $raw);
-        [$pattern, $serial] = explode(';', $patternSerial);
-
-        [$key, $number] = explode('_', $data);
-
-        return [
-            'pattern' => $pattern,
-            'serial' => $serial,
-            'number' => $number,
-        ];
     }
 }

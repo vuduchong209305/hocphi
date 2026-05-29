@@ -63,6 +63,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.css" rel="stylesheet">
+    <link href="{{ asset('assets/css/fancybox.min.css') }}" rel="stylesheet"/>
     <link rel="stylesheet" href="{{ asset('index/css/style.css') }}">
 </head>
 <body>
@@ -179,6 +180,7 @@
     <script src="https://cdn.jsdelivr.net/npm/tabler-icons@1.35.0/icons-react/dist/index.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+    <script src="{{ asset('assets/js/fancybox.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('index/js/script.js') }}"></script>
 

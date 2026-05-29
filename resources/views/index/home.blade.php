@@ -132,6 +132,12 @@
                         Tải lên giấy tờ <span class="text-red-500 italic text-sm">(Bắt buộc)</span> <i>(tất cả thông tin được Viện Khoa học Quản lý Y tế cam kết bảo mật)</i>
                     </label>
 
+                    <div class="flex justify-center items-center my-5">
+                        <a href="{{ asset('assets/images/huong-dan.jpg') }}" data-fancybox>
+                            <img src="{{ asset('assets/images/huong-dan.jpg') }}" alt="huong-dan" class="md:max-w-xl w-full">
+                        </a>
+                    </div>
+
                     <div class="grid md:grid-cols-4 grid-cols-1 gap-4">
 
                         <!-- ITEM -->

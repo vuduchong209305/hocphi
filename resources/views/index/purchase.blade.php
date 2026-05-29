@@ -111,7 +111,7 @@
 						            </div>
 
 						    		<div class="flex justify-center ${order?.paid_at != null ? 'hidden' : ''}">
-						    			<img src="https://api.vietqr.io/image/${order?.bank_code}-${order?.account_number}-Olvjj43.jpg?accountName=${order?.account_owner}&amount=${order?.price}&addInfo=CME ${order?.code} TT" width="300px">
+						    			<img src="https://api.vietqr.io/image/${order?.bank_code}-${order?.account_number}-Olvjj43.jpg?accountName=${order?.account_owner}&amount=${order?.price}&addInfo=CME ${order?.fullname} ${order?.phone}" width="300px">
 						    		</div>
 						    		
 						        </div>

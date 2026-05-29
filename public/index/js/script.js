@@ -67,3 +67,19 @@ function showLoader() {
 function hideLoader(){
     document.getElementById("globalLoader").classList.add("hidden");
 }
+
+$('[data-fancybox]').fancybox({
+    buttons: [
+        'close'
+    ],
+    wheel: true,
+    transitionEffect: "slide",
+    thumbs: true,
+    hash: true,
+    loop: true,
+    keyboard: true,
+    toolbar: true,
+    animationEffect: true,
+    arrows: true,
+    clickContent: true
+});
