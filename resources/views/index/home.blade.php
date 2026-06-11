@@ -409,7 +409,26 @@
                                 }
                             },
                             error: function (xhr) {
-                                showToast('error', 'Có lỗi xảy ra', 'Vui lòng thử lại')
+                                let message = 'Vui lòng thử lại';
+
+                                if (xhr.status === 422 && xhr.responseJSON?.errors) {
+
+                                    message = Object.values(xhr.responseJSON.errors).flat().join('<br>');
+
+                                } else if (xhr.responseJSON?.message) {
+
+                                    message = xhr.responseJSON.message;
+
+                                } else {
+
+                                    console.log(xhr.responseText);
+                                }
+
+                                showToast(
+                                    'error',
+                                    'Thông tin chưa hợp lệ',
+                                    message
+                                );
                             },
                             complete: function () {
                                 form.find('button[type="submit"]').prop('disabled', false).text('Đăng ký');

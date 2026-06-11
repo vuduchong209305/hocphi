@@ -21,26 +21,67 @@ class HomeController extends BaseController
 
     public function register(Request $request, Order $order)
     {
-        $request->validate([
-            'fullname' => 'required',
-            'phone' => 'required',
-            'email' => 'required|email',
-            'cccd' => 'required',
-            'birthday' => 'required',
-            'course_id' => 'required',
-            'gender' => 'required',
-            'birthplace' => 'required',
-            'address' => 'required',
-            'address_cme' => 'required',
-            'education' => 'required',
-            'graduate_year' => 'required',
-            'graduate_address' => 'required',
+        $validator = \Validator::make($request->all(), [
+            'fullname'          => ['required', 'string', 'max:255'],
+            'phone'             => ['required', 'string', 'max:20'],
+            'email'             => ['required', 'email'],
+            'cccd'              => ['required', 'string', 'max:20'],
+            'birthday'          => ['required', 'date'],
+            'course_id'         => ['required'],
+            'gender'            => ['required'],
+            'birthplace'        => ['required', 'string'],
+            'address'           => ['required', 'string'],
+            'address_cme'       => ['required', 'string'],
+            'education'         => ['required', 'string'],
+            'graduate_year'     => ['required', 'digits:4'],
+            'graduate_address'  => ['required', 'string'],
 
-            'cccd_front' => 'required|image',
-            'cccd_back' => 'required|image',
-            'degree' => 'required|image',
-            'signature' => 'required|image',
+            'cccd_front'        => ['required', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
+            'cccd_back'         => ['required', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
+            'degree'            => ['required', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
+            'signature'         => ['required', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
+        ], [
+            'fullname.required'         => 'Vui lòng nhập họ và tên.',
+            'phone.required'            => 'Vui lòng nhập số điện thoại.',
+            'email.required'            => 'Vui lòng nhập email.',
+            'email.email'               => 'Email không đúng định dạng.',
+            'cccd.required'             => 'Vui lòng nhập số CCCD.',
+            'birthday.required'         => 'Vui lòng chọn ngày sinh.',
+            'birthday.date'             => 'Ngày sinh không hợp lệ.',
+            'course_id.required'        => 'Vui lòng chọn khóa học.',
+            'gender.required'           => 'Vui lòng chọn giới tính.',
+            'birthplace.required'       => 'Vui lòng nhập nơi sinh.',
+            'address.required'          => 'Vui lòng nhập địa chỉ.',
+            'address_cme.required'      => 'Vui lòng nhập địa chỉ nhận chứng chỉ.',
+            'education.required'        => 'Vui lòng nhập trình độ học vấn.',
+            'graduate_year.required'    => 'Vui lòng nhập năm tốt nghiệp.',
+            'graduate_year.digits'      => 'Năm tốt nghiệp không hợp lệ.',
+            'graduate_address.required' => 'Vui lòng nhập nơi tốt nghiệp.',
+
+            'cccd_front.required'       => 'Vui lòng tải ảnh CCCD mặt trước.',
+            'cccd_front.image'          => 'CCCD mặt trước phải là hình ảnh.',
+            'cccd_front.mimes'          => 'CCCD mặt trước chỉ hỗ trợ JPG, PNG, WEBP.',
+            'cccd_front.max'            => 'CCCD mặt trước tối đa 5MB.',
+
+            'cccd_back.required'        => 'Vui lòng tải ảnh CCCD mặt sau.',
+            'cccd_back.image'           => 'CCCD mặt sau phải là hình ảnh.',
+            'cccd_back.mimes'           => 'CCCD mặt sau chỉ hỗ trợ JPG, PNG, WEBP.',
+            'cccd_back.max'             => 'CCCD mặt sau tối đa 5MB.',
+
+            'degree.required'           => 'Vui lòng tải ảnh bằng cấp.',
+            'degree.image'              => 'Bằng cấp phải là hình ảnh.',
+            'degree.mimes'              => 'Bằng cấp chỉ hỗ trợ JPG, PNG, WEBP.',
+            'degree.max'                => 'Bằng cấp tối đa 5MB.',
+
+            'signature.required'        => 'Vui lòng tải ảnh chữ ký.',
+            'signature.image'           => 'Chữ ký phải là hình ảnh.',
+            'signature.mimes'           => 'Chữ ký chỉ hỗ trợ JPG, PNG, WEBP.',
+            'signature.max'             => 'Chữ ký tối đa 5MB.',
         ]);
+
+        if ($validator->fails()) {
+            return sendError($validator->errors()->first());
+        }
 
         if(Order::where(['phone' => $request->phone, 'email' => $request->email, 'course_id' => $request->course_id])->exists()) {
             return sendError("Email {$request->email} và số điện thoại {$request->phone} đã đăng ký lớp học này");
