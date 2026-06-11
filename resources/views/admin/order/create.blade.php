@@ -155,7 +155,7 @@
                     </li>
                 </ul>
 
-                <a href="{{ route('order.invoice', ['id' => request('id')]) }}" class="btn btn-sm btn-success">Xuất hóa đơn</a>
+                {{-- <a href="{{ route('order.invoice', ['id' => request('id')]) }}" class="btn btn-sm btn-success">Xuất hóa đơn</a> --}}
 
                 @endif
 
