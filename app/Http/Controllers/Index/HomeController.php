@@ -80,6 +80,7 @@ class HomeController extends BaseController
         ]);
 
         if ($validator->fails()) {
+            \Log::error($validator->errors()->first());
             return sendError($validator->errors()->first());
         }
 
