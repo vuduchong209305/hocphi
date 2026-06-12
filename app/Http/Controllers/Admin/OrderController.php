@@ -91,7 +91,7 @@ class OrderController extends Controller
     public function mail(Request $request)
     {
         $order = Order::findOrFail($request->id);
-        \Mail::to($order->email)->cc(mail_cc())->queue(new \App\Mail\RegisterCourse($order));
+        \Mail::to($order->email)->bcc(mail_cc())->queue(new \App\Mail\RegisterCourse($order));
 
         return sendResponse($order, 'Gửi mail thành công');
     }

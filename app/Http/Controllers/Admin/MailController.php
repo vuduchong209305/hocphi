@@ -121,7 +121,7 @@ class MailController extends Controller
 
             if(count($emails) > 0 && !empty($subject) && !empty($content)) {
                 foreach($emails as $email) {
-                    \Mail::to($email)->cc(mail_cc())->queue(new \App\Mail\Send($subject, $content));
+                    \Mail::to($email)->bcc(mail_cc())->queue(new \App\Mail\Send($subject, $content));
                 }
 
                 return sendResponse($subject, 'Đã kích hoạt quy trình gửi mail');

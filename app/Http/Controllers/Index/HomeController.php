@@ -134,7 +134,7 @@ class HomeController extends BaseController
         }
 
         if($order->save()) {
-            \Mail::to($order->email)->cc(mail_cc())->queue(new \App\Mail\RegisterCourse($order));
+            \Mail::to($order->email)->bcc(mail_cc())->queue(new \App\Mail\RegisterCourse($order));
             return sendResponse($order, 'Đăng ký thành công, vui lòng kiểm tra Email');
         }
 

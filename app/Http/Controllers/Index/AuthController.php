@@ -49,7 +49,7 @@ class AuthController extends BaseController
             
             $user->save();
 
-            \Mail::to($user->email)->cc(mail_cc())->queue(new \App\Mail\NewPassword($user, $password));
+            \Mail::to($user->email)->bcc(mail_cc())->queue(new \App\Mail\NewPassword($user, $password));
 
             \DB::commit();
 
@@ -82,7 +82,7 @@ class AuthController extends BaseController
         $user->password = $password;
         $user->save();
 
-        \Mail::to($user->email)->cc(mail_cc())->queue(new \App\Mail\NewPassword($user, $password));
+        \Mail::to($user->email)->bcc(mail_cc())->queue(new \App\Mail\NewPassword($user, $password));
         
         return redirect()->route('index.home')->with('success', 'Vui lòng vào Email để xem mật khẩu');
     }
