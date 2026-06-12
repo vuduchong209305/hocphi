@@ -7,13 +7,14 @@
 
     	<h2 class="text-3xl font-bold mb-4">Thanh toán khóa học</h2>
         <p class="text-gray-500 mb-4">Vui lòng nhập số điện thoại để tìm kiếm</p>
-        <p class="text-red-500 mb-2 px-3 italic text-justify">
+        <p class="text-red-500 mb-2 px-3 italic text-center">
         	<b>
-	        	Lưu ý: Thời hạn thanh toán học phí vào buổi thứ 02 của khóa đào tạo
+	        	Lưu ý: Học viên đóng học phí vào buổi thứ 2 của khoá đào tạo
+				<br>Không đóng học phí trước khoá học
 	        </b>
         </p>
 
-        <p class="text-green-500 mb-10 px-3 italic text-justify">
+        <p class="text-indigo-700 mb-10 px-3 italic text-justify">
 	        Học viên lưu lại bill chuyển khoản học phí và gửi cho chuyên viên hướng dẫn
         </p>
 
