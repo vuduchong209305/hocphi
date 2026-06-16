@@ -38,7 +38,11 @@ if(!function_exists('no_image')) {
 
 if(!function_exists('mail_cc')) {
 	function mail_cc() {
-		return ['vuduchong209305@gmail.com', 'khoipt1993@gmail.com'];
+		return [
+			'daotaoycme@gmail.com',
+			'khoipt1993@gmail.com',
+			'vuduchong209305@gmail.com'
+		];
 	}
 }
 
