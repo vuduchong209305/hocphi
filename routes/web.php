@@ -13,6 +13,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/test', function () {
+    return [
+        'APP_URL' => config('app.url'),
+        'asset' => asset('assets/images/logo-white.png'),
+        'secure_asset' => secure_asset('assets/images/logo-white.png'),
+        'isSecure' => request()->isSecure(),
+        'scheme' => request()->getScheme(),
+    ];
+});
+
+Route::get('/header-test', function () {
+    return request()->headers->all();
+});
+
 # ADMIN
 Route::group(['prefix' => 'hadmin', 'namespace' => 'Admin'], function() {
 
